@@ -1,4 +1,4 @@
-#   Copyright (c) 2019 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2019 Paddle.paddlePaddle.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,10 +16,10 @@ UnifiedTransformer
 """
 
 import numpy as np
-import paddle
-import paddle.fluid as fluid
-from paddle.fluid.dygraph import Linear
-import paddle.fluid.layers as layers
+import Paddle.paddle
+import Paddle.paddle.fluid as fluid
+from Paddle.paddle.fluid.dygraph import FC
+import Paddle.paddle.fluid.layers as layers
 
 from plato.args import str2bool
 from plato.modules.embedder import Embedder

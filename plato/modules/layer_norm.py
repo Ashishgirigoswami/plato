@@ -1,4 +1,4 @@
-#   Copyright (c) 2019 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2019 Paddle.paddlePaddle.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,13 +15,13 @@
 LayerNorm layer.
 """
 
-# from paddle.fluid.dygraph import LayerNorm
+# from Paddle.paddle.fluid.dygraph import LayerNorm
 
 from six.moves import reduce
 
-import paddle.fluid as fluid
-import paddle.fluid.layers as layers
-from paddle.fluid.dygraph import Layer
+import Paddle.paddle.fluid as fluid
+import Paddle.paddle.fluid.layers as layers
+from Paddle.paddle.fluid.dygraph import Layer
 import logging
 
 class LayerNorm(Layer):

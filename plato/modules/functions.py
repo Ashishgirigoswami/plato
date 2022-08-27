@@ -1,4 +1,4 @@
-#   Copyright (c) 2019 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2019 Paddle.paddlePaddle.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,8 +16,8 @@ Helpful functions.
 """
 
 import numpy as np
-import paddle.fluid as fluid
-import paddle.fluid.layers as layers
+import Paddle.paddle.fluid as fluid
+import Paddle.paddle.fluid.layers as layers
 
 
 def unsqueeze(input, axes):

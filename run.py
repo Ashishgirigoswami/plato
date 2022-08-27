@@ -20,7 +20,7 @@ import json
 import os
 
 import numpy as np
-import paddle.fluid as fluid
+import Paddle.paddle.fluid as fluid
 
 from plato.args import parse_args
 from plato.args import str2bool

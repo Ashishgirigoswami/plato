@@ -1,4 +1,4 @@
-#   Copyright (c) 2019 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2019 Paddle.paddlePaddle.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,12 +19,12 @@ from collections import OrderedDict
 import os
 
 import numpy as np
-from paddle.fluid import core
-from paddle.fluid.dygraph import layers
-from paddle.fluid.dygraph import parallel_helper
-import paddle.fluid.framework as framework
-from paddle.fluid.layers import collective
-from paddle.fluid.dygraph.base import to_variable, no_grad
+from Paddle.paddle.fluid import core
+from Paddle.paddle.fluid.dygraph import layers
+from Paddle.paddle.fluid.dygraph import parallel_helper
+import Paddle.paddle.fluid.framework as framework
+from Paddle.paddle.fluid.layers import collective
+from Paddle.paddle.fluid.dygraph.base import to_variable, no_grad
 
 ParallelStrategy = core.ParallelStrategy
 
@@ -57,12 +57,12 @@ def prepare_context(strategy=None):
 class Env(object):
     """ Copy codes. """
     def __init__(self):
-        self._nranks = int(os.getenv("PADDLE_TRAINERS_NUM", "1"))
-        self._local_rank = int(os.getenv("PADDLE_TRAINER_ID", "0"))
+        self._nranks = int(os.getenv("Paddle.paddle_TRAINERS_NUM", "1"))
+        self._local_rank = int(os.getenv("Paddle.paddle_TRAINER_ID", "0"))
         self._dev_id = int(os.getenv("FLAGS_selected_gpus", "0"))
-        self._trainer_endpoints = os.getenv("PADDLE_TRAINER_ENDPOINTS",
+        self._trainer_endpoints = os.getenv("Paddle.paddle_TRAINER_ENDPOINTS",
                                             "").split(",")
-        self._current_endpoint = os.getenv("PADDLE_CURRENT_ENDPOINT", "")
+        self._current_endpoint = os.getenv("Paddle.paddle_CURRENT_ENDPOINT", "")
 
     @property
     def nranks(self):
@@ -96,18 +96,18 @@ class DataParallel(layers.Layer):
 
     Currently, DataParallel only supports to run the dynamic graph
     with multi-process. The usage is:
-    `python -m paddle.distributed.launch --gpus 2 dynamic_graph_test.py`.
+    `python -m Paddle.paddle.distributed.launch --gpus 2 dynamic_graph_test.py`.
     And the content of `dynamic_graph_test.py` is the code of examples.
 
     Examples:
         .. code-block:: python
 
            import numpy as np
-           import paddle.fluid as fluid
-           import paddle.fluid.dygraph as dygraph
-           from paddle.fluid.optimizer import AdamOptimizer
-           from paddle.fluid.dygraph.nn import FC
-           from paddle.fluid.dygraph.base import to_variable
+           import Paddle.paddle.fluid as fluid
+           import Paddle.paddle.fluid.dygraph as dygraph
+           from Paddle.paddle.fluid.optimizer import AdamOptimizer
+           from Paddle.paddle.fluid.dygraph.nn import FC
+           from Paddle.paddle.fluid.dygraph.base import to_variable
 
            place = fluid.CUDAPlace(0)
            with fluid.dygraph.guard(place=place):
@@ -186,7 +186,7 @@ class DataParallel(layers.Layer):
         return loss
 
     def _coalesce_tensors(self, var_groups):
-        from paddle.fluid.layers import nn
+        from Paddle.paddle.fluid.layers import nn
         coalesced_grads_and_grad_vars = []
         for group_id, grad_vars in var_groups.items():
             flattened_vars = []
@@ -202,7 +202,7 @@ class DataParallel(layers.Layer):
         return coalesced_grads_and_grad_vars
 
     def _split_tensors(self, coalesced_grads_and_grad_vars):
-        from paddle.fluid.layers import nn
+        from Paddle.paddle.fluid.layers import nn
         for coalesced_grad, origin_grad_vars, grad_shapes in coalesced_grads_and_grad_vars:
             grad_var_len = [np.prod(g_shape) for g_shape in grad_shapes]
             self._helper.main_program.current_block().append_op(

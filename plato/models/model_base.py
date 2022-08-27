@@ -1,4 +1,4 @@
-#   Copyright (c) 2019 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2019 Paddle.paddlePaddle.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
 Model base
 """
 
-import paddle.fluid as fluid
-from paddle.fluid.dygraph import parallel_helper
+import Paddle.paddle.fluid as fluid
+from Paddle.paddle.fluid.dygraph import parallel_helper
 
 
 class ModelBase(fluid.dygraph.Layer):
