@@ -1,4 +1,4 @@
-# Copyright (c) 2019 PaddlePaddle Authors. All Rights Reserved.
+# Copyright (c) 2019 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,25 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """
-paddle.distributed.launch is a module that spawns multiple distributed 
+Paddle.python.paddle.distributed.launch is a module that spawns multiple distributed 
 process on each trainning node for gpu trainning.
 Usage:
     In both of single node training or multiple node training, this module 
 launch a process on each of the given gpu card.
     1. for single node trainning with all visible gpu cards:
-       python -m paddle.distributed.launch \
+       python -m Paddle.python.paddle.distributed.launch \
          your_training_py (arg1 arg2 and all others)
     
     2. for single node trainning with [0,4) cards
-       python -m paddle.distributed.launch --selected_gpus="0,1,2,3" \
+       python -m Paddle.python.paddle.distributed.launch --selected_gpus="0,1,2,3" \
          your_training_py (arg1 arg2 and all others)
     3. for mulitple node training such as two node:192.168.0.16, 192.168.0.17
         on 192.168.0.16:
-            python -m paddle.distributed.launch --cluster_node_ips="192.168.0.16,192.168.0.17" \
+            python -m Paddle.python.paddle.distributed.launch --cluster_node_ips="192.168.0.16,192.168.0.17" \
                 --node_ip=192.168.0.16 \
                 your_training_py (arg1 arg2 and all others)
         on 192.168.0.17:
-            python -m paddle.distributed.launch --cluster_node_ips="192.168.0.16,192.168.0.17" \
+            python -m Paddle.python.paddle.distributed.launch --cluster_node_ips="192.168.0.16,192.168.0.17" \
                 --node_ip=192.168.0.17 \
                 your_training_py (arg1 arg2 and all others)
 """
@@ -45,7 +45,7 @@ import time
 import six
 import copy
 from argparse import ArgumentParser, REMAINDER
-import paddle.fluid as fluid
+import Paddle.python.paddle.fluid as fluid
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -69,16 +69,16 @@ def _parse_args():
     @retval ArgumentParser
     """
     parser = ArgumentParser(
-        description='''start paddle training using multi-process mode.
+        description='''start Paddle.python.paddle training using multi-process mode.
 NOTE: your train program ***must*** run as distributed nccl2 mode,
-see: http://www.paddlepaddle.org/documentation/docs/zh/1.6/user_guides/howto/training/cluster_howto.html#permalink-8--nccl2-
+see: http://www.Paddle.python.paddlePaddle.python.paddle.org/documentation/docs/zh/1.6/user_guides/howto/training/cluster_howto.html#permalink-8--nccl2-
 And your train program must read environment variables below in order to let different
 process init properly:
 FLAGS_selected_gpus
-PADDLE_TRAINER_ID
-PADDLE_CURRENT_ENDPOINT
-PADDLE_TRAINERS_NUM
-PADDLE_TRAINER_ENDPOINTS
+Paddle.python.paddle_TRAINER_ID
+Paddle.python.paddle_CURRENT_ENDPOINT
+Paddle.python.paddle_TRAINERS_NUM
+Paddle.python.paddle_TRAINER_ENDPOINTS
 POD_IP (current node ip address, not needed for local training)
 ''')
 
@@ -87,17 +87,17 @@ POD_IP (current node ip address, not needed for local training)
         "--cluster_node_ips",
         type=str,
         default="127.0.0.1",
-        help="Paddle cluster nodes ips, such as 192.168.0.16,192.168.0.17..")
+        help="Paddle.python.paddle cluster nodes ips, such as 192.168.0.16,192.168.0.17..")
     parser.add_argument(
         "--node_ip",
         type=str,
         default="127.0.0.1",
         help="The current node ip. ")
     parser.add_argument(
-        "--use_paddlecloud",
+        "--use_Paddle.python.paddlecloud",
         type=bool,
         default="False",
-        help="wheter to use paddlecloud platform to run your multi-process job.")
+        help="wheter to use Paddle.python.paddlecloud platform to run your multi-process job.")
     parser.add_argument(
         "--started_port",
         type=int,
@@ -152,32 +152,32 @@ def start_procs(args):
     current_node_ip = args.node_ip
     node_ips = [x.strip() for x in args.cluster_node_ips.split(',')]
     node_id = node_ips.index(current_node_ip)
-    if args.use_paddlecloud:
-        trainer_nums = int(os.getenv("PADDLE_TRAINERS_NUM", "1"))
+    if args.use_Paddle.python.paddlecloud:
+        trainer_nums = int(os.getenv("Paddle.python.paddle_TRAINERS_NUM", "1"))
         if trainer_nums != 1:
-            #you can automatically get ip info while using paddlecloud multi nodes mode.
+            #you can automatically get ip info while using Paddle.python.paddlecloud multi nodes mode.
             current_node_ip = os.getenv("POD_IP")
             assert current_node_ip is not None, "POD_IP should not be None"
-            node_ips = os.getenv("PADDLE_TRAINERS")
-            assert node_ips is not None, "PADDLE_TRAINERS should not be None"
+            node_ips = os.getenv("Paddle.python.paddle_TRAINERS")
+            assert node_ips is not None, "Paddle.python.paddle_TRAINERS should not be None"
             node_ips = node_ips.split(",")
-            node_id = os.getenv("PADDLE_TRAINER_ID")
-            assert node_id is not None, "PADDLE_TRAINER_ID should not be None"
+            node_id = os.getenv("Paddle.python.paddle_TRAINER_ID")
+            assert node_id is not None, "Paddle.python.paddle_TRAINER_ID should not be None"
             node_id = int(node_id)
 
             if args.node_ip != "127.0.0.1" and current_node_ip != args.node_ip:
                 logger.warning(
-                    "Please NOTE: When using paddlecloud, current_node_ip is \
+                    "Please NOTE: When using Paddle.python.paddlecloud, current_node_ip is \
 automatically got from POD_IP. Your input node_ip: {} doesn't equals to \
-current_node_ip: {} from paddlecloud environment."
+current_node_ip: {} from Paddle.python.paddlecloud environment."
                     .format(args.node_ip, current_node_ip))
             if args.cluster_node_ips != "127.0.0.1" and args.cluster_node_ips != ",".join(
                     node_ips):
                 logger.warning(
-                    "Please NOTE: When using paddlecloud, cluster_node_ips is \
-automatically got from PADDLE_TRAINERS(multi nodes) or POD_IP(single node).\
+                    "Please NOTE: When using Paddle.python.paddlecloud, cluster_node_ips is \
+automatically got from Paddle.python.paddle_TRAINERS(multi nodes) or POD_IP(single node).\
 Your input cluster_node_ips: {} doesn't equals to IPs: {} from \
-paddlecloud environment.".format(args.cluster_node_ips, node_ips))
+Paddle.python.paddlecloud environment.".format(args.cluster_node_ips, node_ips))
     num_nodes = len(node_ips)
 
     if args.selected_gpus is None:
@@ -202,7 +202,7 @@ paddlecloud environment.".format(args.cluster_node_ips, node_ips))
               ", node_ips:", node_ips, ", nranks:", nranks)
 
     current_env = copy.copy(default_env)
-    #paddle broadcast ncclUniqueId use socket, and
+    #Paddle.python.paddle broadcast ncclUniqueId use socket, and
     #proxy maybe make trainers unreachable, so delete them.
     #if we set them to "", grpc will log error message "bad uri"
     #so just delete them.
@@ -217,11 +217,11 @@ paddlecloud environment.".format(args.cluster_node_ips, node_ips))
         rank = (node_id * selected_gpus_num + i)
         current_env.update({
             "FLAGS_selected_gpus": "%s" % selected_gpus[i],
-            "PADDLE_TRAINER_ID": "%d" % rank,
-            "PADDLE_CURRENT_ENDPOINT":
+            "Paddle.python.paddle_TRAINER_ID": "%d" % rank,
+            "Paddle.python.paddle_CURRENT_ENDPOINT":
             "%s:%d" % (current_node_ip, args.started_port + i),
-            "PADDLE_TRAINERS_NUM": "%d" % nranks,
-            "PADDLE_TRAINER_ENDPOINTS": trainers_endpoints
+            "Paddle.python.paddle_TRAINERS_NUM": "%d" % nranks,
+            "Paddle.python.paddle_TRAINER_ENDPOINTS": trainers_endpoints
         })
 
         cmd = [sys.executable, "-u", args.training_script

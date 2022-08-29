@@ -1,4 +1,4 @@
-#   Copyright (c) 2019 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2019 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@ DataLoader class
 
 import math
 
-import paddle.fluid as fluid
-import paddle.batch
+import Paddle.python.paddle.fluid as fluid
+import Paddle.python.paddle.batch
 
 from plato.args import str2bool
 from plato.data.sampler import RandomSampler
@@ -54,7 +54,7 @@ class DataLoader(object):
             for idx in sampler:
                 yield idx
 
-        self.reader = paddle.batch(reader, batch_size=hparams.batch_size, drop_last=False)
+        self.reader = Paddle.python.paddle.batch(reader, batch_size=hparams.batch_size, drop_last=False)
         self.num_batches = math.ceil(len(dataset) / hparams.batch_size)
 
         if hparams.use_data_distributed and parallel.Env().nranks > 1 and is_train:

@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ from six.moves import zip
 import itertools
 import random
 import zlib
-import paddle.compat as cpt
+import Paddle.python.paddle.compat as cpt
 
 
 def cache(reader):
@@ -79,14 +79,14 @@ def map_readers(func, *readers):
 
         .. code-block:: python
 
-         import paddle.reader
+         import Paddle.python.paddle.reader
          d = {"h": 0, "i": 1}
          def func(x):
              return d[x]
          def reader():
              yield "h"
              yield "i"
-         map_reader_result = paddle.reader.map_readers(func, reader)
+         map_reader_result = Paddle.python.paddle.reader.map_readers(func, reader)
     """
 
     def reader():
@@ -101,8 +101,8 @@ def map_readers(func, *readers):
 
 def shuffle(reader, buf_size):
     """
-    paddle.fluid.io.shuffle ( :ref:`api_fluid_io_shuffle` ) is recommended to use,
-    and paddle.reader.shuffle is an alias.
+    Paddle.python.paddle.fluid.io.shuffle ( :ref:`api_fluid_io_shuffle` ) is recommended to use,
+    and Paddle.python.paddle.reader.shuffle is an alias.
 
     This API creates a decorated reader that outputs the shuffled data.
 
@@ -119,7 +119,7 @@ def shuffle(reader, buf_size):
     Examples:
         .. code-block:: python
 
-            import paddle.fluid as fluid
+            import Paddle.python.paddle.fluid as fluid
 
             def reader():
                 for i in range(5):
@@ -154,8 +154,8 @@ def chain(*readers):
     chains the outputs of input readers together as its output.
 
     **Note**:
-        ``paddle.reader.chain`` is the alias of ``paddle.fluid.io.chain``, and
-        ``paddle.fluid.io.chain`` is recommended to use.
+        ``Paddle.python.paddle.reader.chain`` is the alias of ``Paddle.python.paddle.fluid.io.chain``, and
+        ``Paddle.python.paddle.fluid.io.chain`` is recommended to use.
 
     For example, if three input readers' outputs are as follows:
     [0, 0, 0],
@@ -173,7 +173,7 @@ def chain(*readers):
     Examples:
         ..  code-block:: python
 
-            import paddle
+            import Paddle.python.paddle
 
             def reader_creator_3(start):
                 def reader():
@@ -181,7 +181,7 @@ def chain(*readers):
                         yield [i, i, i]
                 return reader
 
-            c = paddle.reader.chain(reader_creator_3(0), reader_creator_3(10), reader_creator_3(20))
+            c = Paddle.python.paddle.reader.chain(reader_creator_3(0), reader_creator_3(10), reader_creator_3(20))
             for e in c():
                 print(e)
             # Output:
@@ -237,7 +237,7 @@ def compose(*readers, **kwargs):
     Examples:
         .. code-block:: python
 
-          import paddle.fluid as fluid
+          import Paddle.python.paddle.fluid as fluid
           def reader_creator_10(dur):
               def reader():
                  for i in range(10):
@@ -290,7 +290,7 @@ def buffered(reader, size):
     Examples:
         .. code-block:: python
 
-            import paddle.reader as reader
+            import Paddle.python.paddle.reader as reader
             import time
 
             def reader_creator_10(dur):
@@ -338,8 +338,8 @@ def buffered(reader, size):
 
 def firstn(reader, n):
     """
-    paddle.fluid.io.firstn ( :ref:`api_fluid_io_firstn` ) is recommended to use,
-    and paddle.reader.firstn is an alias.
+    Paddle.python.paddle.fluid.io.firstn ( :ref:`api_fluid_io_firstn` ) is recommended to use,
+    and Paddle.python.paddle.reader.firstn is an alias.
     
     This API creates a decorated reader, and limits the max number of 
     samples that reader could return.
@@ -354,7 +354,7 @@ def firstn(reader, n):
     Examples:
         .. code-block:: python
 
-            import paddle.fluid as fluid
+            import Paddle.python.paddle.fluid as fluid
 
             def reader():
                 for i in range(100):
@@ -400,7 +400,7 @@ def xmap_readers(mapper, reader, process_num, buffer_size, order=False):
 
         .. code-block:: python
 
-            import paddle.reader as reader
+            import Paddle.python.paddle.reader as reader
             import time
 
             def reader_creator_10(dur):
@@ -538,8 +538,8 @@ def multiprocess_reader(readers, use_pipe=True, queue_size=1000):
 
     .. code-block:: python
 
-        import paddle.fluid as fluid
-        from paddle.fluid.io import multiprocess_reader
+        import Paddle.python.paddle.fluid as fluid
+        from Paddle.python.paddle.fluid.io import multiprocess_reader
         import numpy as np
         
         sample_files = ['sample_file_1', 'sample_file_2']

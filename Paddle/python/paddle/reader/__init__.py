@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """
-At training and testing time, PaddlePaddle programs need to read data. To ease
+At training and testing time, Paddle.python.paddlePaddle.python.paddle programs need to read data. To ease
 the users' work to write data reading code, we define that
 
 - A *reader* is a function that reads data (from file, network, random number
@@ -63,7 +63,7 @@ An example implementation for multiple item data reader creator:
 
 """
 
-import paddle.reader.decorator
-from paddle.reader.decorator import *
+import Paddle.python.paddle.reader.decorator
+from Paddle.python.paddle.reader.decorator import *
 
 __all__ = decorator.__all__
