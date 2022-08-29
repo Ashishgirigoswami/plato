@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@ UCI Housing dataset.
 
 This module will download dataset from
 https://archive.ics.uci.edu/ml/machine-learning-databases/housing/ and
-parse training set and test set into paddle reader creators.
+parse training set and test set into Paddle.python.paddle reader creators.
 """
 
 from __future__ import print_function
@@ -26,11 +26,11 @@ import six
 import tempfile
 import tarfile
 import os
-import paddle.dataset.common
+import Paddle.python.paddle.dataset.common
 
 __all__ = ['train', 'test']
 
-URL = 'http://paddlemodels.bj.bcebos.com/uci_housing/housing.data'
+URL = 'http://Paddle.python.paddlemodels.bj.bcebos.com/uci_housing/housing.data'
 MD5 = 'd4accdce7a25600298819f8e28e8d593'
 feature_names = [
     'CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX',
@@ -40,7 +40,7 @@ feature_names = [
 UCI_TRAIN_DATA = None
 UCI_TEST_DATA = None
 
-FLUID_URL_MODEL = 'https://github.com/PaddlePaddle/book/raw/develop/01.fit_a_line/fluid/fit_a_line.fluid.tar'
+FLUID_URL_MODEL = 'https://github.com/Paddle.python.paddlePaddle.python.paddle/book/raw/develop/01.fit_a_line/fluid/fit_a_line.fluid.tar'
 FLUID_MD5_MODEL = '6e6dd637ccd5993961f68bfbde46090b'
 
 
@@ -93,7 +93,7 @@ def train():
     :rtype: callable
     """
     global UCI_TRAIN_DATA
-    load_data(paddle.dataset.common.download(URL, 'uci_housing', MD5))
+    load_data(Paddle.python.paddle.dataset.common.download(URL, 'uci_housing', MD5))
 
     def reader():
         for d in UCI_TRAIN_DATA:
@@ -113,7 +113,7 @@ def test():
     :rtype: callable
     """
     global UCI_TEST_DATA
-    load_data(paddle.dataset.common.download(URL, 'uci_housing', MD5))
+    load_data(Paddle.python.paddle.dataset.common.download(URL, 'uci_housing', MD5))
 
     def reader():
         for d in UCI_TEST_DATA:
@@ -123,7 +123,7 @@ def test():
 
 
 def fluid_model():
-    parameter_tar = paddle.dataset.common.download(
+    parameter_tar = Paddle.python.paddle.dataset.common.download(
         FLUID_URL_MODEL, 'uci_housing', FLUID_MD5_MODEL, 'fit_a_line.fluid.tar')
 
     tar = tarfile.TarFile(parameter_tar, mode='r')
@@ -141,9 +141,9 @@ def predict_reader():
     :rtype: tuple
     """
     global UCI_TEST_DATA
-    load_data(paddle.dataset.common.download(URL, 'uci_housing', MD5))
+    load_data(Paddle.python.paddle.dataset.common.download(URL, 'uci_housing', MD5))
     return (UCI_TEST_DATA[0][:-1], )
 
 
 def fetch():
-    paddle.dataset.common.download(URL, 'uci_housing', MD5)
+    Paddle.python.paddle.dataset.common.download(URL, 'uci_housing', MD5)

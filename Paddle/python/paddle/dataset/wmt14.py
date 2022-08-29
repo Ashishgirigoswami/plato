@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
 WMT14 dataset.
 The original WMT14 dataset is too large and a small set of data for set is
 provided. This module will download dataset from
-http://paddlepaddle.bj.bcebos.com/demo/wmt_shrinked_data/wmt14.tgz and
-parse training set and test set into paddle reader creators.
+http://Paddle.python.paddlePaddle.python.paddle.bj.bcebos.com/demo/wmt_shrinked_data/wmt14.tgz and
+parse training set and test set into Paddle.python.paddle reader creators.
 
 """
 
@@ -26,8 +26,8 @@ import six
 import tarfile
 import gzip
 
-import paddle.dataset.common
-import paddle.compat as cpt
+import Paddle.python.paddle.dataset.common
+import Paddle.python.paddle.compat as cpt
 
 __all__ = [
     'train',
@@ -40,10 +40,10 @@ URL_DEV_TEST = ('http://www-lium.univ-lemans.fr/~schwenk/'
 MD5_DEV_TEST = '7d7897317ddd8ba0ae5c5fa7248d3ff5'
 # this is a small set of data for test. The original data is too large and
 # will be add later.
-URL_TRAIN = ('http://paddlemodels.bj.bcebos.com/wmt/wmt14.tgz')
+URL_TRAIN = ('http://Paddle.python.paddlemodels.bj.bcebos.com/wmt/wmt14.tgz')
 MD5_TRAIN = '0791583d57d5beb693b9414c5b36798c'
 # BLEU of this trained model is 26.92
-URL_MODEL = 'http://paddlemodels.bj.bcebos.com/wmt%2Fwmt14.tgz'
+URL_MODEL = 'http://Paddle.python.paddlemodels.bj.bcebos.com/wmt%2Fwmt14.tgz'
 MD5_MODEL = '0cb4a5366189b6acba876491c8724fa3'
 
 START = "<s>"
@@ -126,7 +126,7 @@ def train(dict_size):
     :rtype: callable
     """
     return reader_creator(
-        paddle.dataset.common.download(URL_TRAIN, 'wmt14', MD5_TRAIN),
+        Paddle.python.paddle.dataset.common.download(URL_TRAIN, 'wmt14', MD5_TRAIN),
         'train/train', dict_size)
 
 
@@ -142,20 +142,20 @@ def test(dict_size):
     :rtype: callable
     """
     return reader_creator(
-        paddle.dataset.common.download(URL_TRAIN, 'wmt14', MD5_TRAIN),
+        Paddle.python.paddle.dataset.common.download(URL_TRAIN, 'wmt14', MD5_TRAIN),
         'test/test', dict_size)
 
 
 def gen(dict_size):
     return reader_creator(
-        paddle.dataset.common.download(URL_TRAIN, 'wmt14', MD5_TRAIN),
+        Paddle.python.paddle.dataset.common.download(URL_TRAIN, 'wmt14', MD5_TRAIN),
         'gen/gen', dict_size)
 
 
 def get_dict(dict_size, reverse=True):
     # if reverse = False, return dict = {'a':'001', 'b':'002', ...}
     # else reverse = true, return dict = {'001':'a', '002':'b', ...}
-    tar_file = paddle.dataset.common.download(URL_TRAIN, 'wmt14', MD5_TRAIN)
+    tar_file = Paddle.python.paddle.dataset.common.download(URL_TRAIN, 'wmt14', MD5_TRAIN)
     src_dict, trg_dict = __read_to_dict(tar_file, dict_size)
     if reverse:
         src_dict = {v: k for k, v in six.iteritems(src_dict)}
@@ -164,5 +164,5 @@ def get_dict(dict_size, reverse=True):
 
 
 def fetch():
-    paddle.dataset.common.download(URL_TRAIN, 'wmt14', MD5_TRAIN)
-    paddle.dataset.common.download(URL_MODEL, 'wmt14', MD5_MODEL)
+    Paddle.python.paddle.dataset.common.download(URL_TRAIN, 'wmt14', MD5_TRAIN)
+    Paddle.python.paddle.dataset.common.download(URL_MODEL, 'wmt14', MD5_MODEL)

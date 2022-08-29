@@ -1,4 +1,4 @@
-#   Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,19 +16,19 @@ from __future__ import print_function
 
 import sys
 
-import paddle.fluid as fluid
+import Paddle.python.paddle.fluid as fluid
 
 try:
-    from paddle.fluid.contrib.trainer import *
-    from paddle.fluid.contrib.inferencer import *
+    from Paddle.python.paddle.fluid.contrib.trainer import *
+    from Paddle.python.paddle.fluid.contrib.inferencer import *
 except ImportError:
     print(
-        "In the fluid 1.0, the trainer and inferencer are moving to paddle.fluid.contrib",
+        "In the fluid 1.0, the trainer and inferencer are moving to Paddle.python.paddle.fluid.contrib",
         file=sys.stderr)
-    from paddle.fluid.trainer import *
-    from paddle.fluid.inferencer import *
-import paddle.fluid.core as core
-import paddle
+    from Paddle.python.paddle.fluid.trainer import *
+    from Paddle.python.paddle.fluid.inferencer import *
+import Paddle.python.paddle.fluid.core as core
+import Paddle.python.paddle
 import numpy
 import math
 import sys
@@ -71,8 +71,8 @@ def train(use_cuda, train_program, params_dirname, parallel):
 
     def event_handler(event):
         if isinstance(event, EndEpochEvent):
-            test_reader = paddle.batch(
-                paddle.dataset.mnist.test(), batch_size=BATCH_SIZE)
+            test_reader = Paddle.python.paddle.batch(
+                Paddle.python.paddle.dataset.mnist.test(), batch_size=BATCH_SIZE)
             avg_cost, acc = trainer.test(
                 reader=test_reader, feed_order=['img', 'label'])
 
@@ -87,9 +87,9 @@ def train(use_cuda, train_program, params_dirname, parallel):
                 if math.isnan(avg_cost):
                     sys.exit("got NaN loss, training failed.")
 
-    train_reader = paddle.batch(
-        paddle.reader.shuffle(
-            paddle.dataset.mnist.train(), buf_size=500),
+    train_reader = Paddle.python.paddle.batch(
+        Paddle.python.paddle.reader.shuffle(
+            Paddle.python.paddle.dataset.mnist.train(), buf_size=500),
         batch_size=BATCH_SIZE)
 
     trainer.train(

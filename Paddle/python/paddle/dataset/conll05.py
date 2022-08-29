@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
 # limitations under the License.
 """
 Conll05 dataset.
-Paddle semantic role labeling Book and demo use this dataset as an example.
+Paddle.python.paddle semantic role labeling Book and demo use this dataset as an example.
 Because Conll05 is not free in public, the default downloaded URL is test set
 of Conll05 (which is public). Users can change URL and MD5 to their Conll
 dataset. And a pre-trained word vector model based on Wikipedia corpus is used
@@ -25,21 +25,21 @@ from __future__ import print_function
 import tarfile
 import gzip
 import itertools
-import paddle.dataset.common
-import paddle.compat as cpt
+import Paddle.python.paddle.dataset.common
+import Paddle.python.paddle.compat as cpt
 from six.moves import zip, range
 
 __all__ = ['test, get_dict', 'get_embedding']
 
-DATA_URL = 'http://paddlemodels.bj.bcebos.com/conll05st/conll05st-tests.tar.gz'
+DATA_URL = 'http://Paddle.python.paddlemodels.bj.bcebos.com/conll05st/conll05st-tests.tar.gz'
 DATA_MD5 = '387719152ae52d60422c016e92a742fc'
-WORDDICT_URL = 'http://paddlemodels.bj.bcebos.com/conll05st%2FwordDict.txt'
+WORDDICT_URL = 'http://Paddle.python.paddlemodels.bj.bcebos.com/conll05st%2FwordDict.txt'
 WORDDICT_MD5 = 'ea7fb7d4c75cc6254716f0177a506baa'
-VERBDICT_URL = 'http://paddlemodels.bj.bcebos.com/conll05st%2FverbDict.txt'
+VERBDICT_URL = 'http://Paddle.python.paddlemodels.bj.bcebos.com/conll05st%2FverbDict.txt'
 VERBDICT_MD5 = '0d2977293bbb6cbefab5b0f97db1e77c'
-TRGDICT_URL = 'http://paddlemodels.bj.bcebos.com/conll05st%2FtargetDict.txt'
+TRGDICT_URL = 'http://Paddle.python.paddlemodels.bj.bcebos.com/conll05st%2FtargetDict.txt'
 TRGDICT_MD5 = 'd8c7f03ceb5fc2e5a0fa7503a4353751'
-EMB_URL = 'http://paddlemodels.bj.bcebos.com/conll05st%2Femb'
+EMB_URL = 'http://Paddle.python.paddlemodels.bj.bcebos.com/conll05st%2Femb'
 EMB_MD5 = 'bf436eb0faa1f6f9103017f8be57cdb7'
 
 UNK_IDX = 0
@@ -207,11 +207,11 @@ def get_dict():
     Get the word, verb and label dictionary of Wikipedia corpus.
     """
     word_dict = load_dict(
-        paddle.dataset.common.download(WORDDICT_URL, 'conll05st', WORDDICT_MD5))
+        Paddle.python.paddle.dataset.common.download(WORDDICT_URL, 'conll05st', WORDDICT_MD5))
     verb_dict = load_dict(
-        paddle.dataset.common.download(VERBDICT_URL, 'conll05st', VERBDICT_MD5))
+        Paddle.python.paddle.dataset.common.download(VERBDICT_URL, 'conll05st', VERBDICT_MD5))
     label_dict = load_label_dict(
-        paddle.dataset.common.download(TRGDICT_URL, 'conll05st', TRGDICT_MD5))
+        Paddle.python.paddle.dataset.common.download(TRGDICT_URL, 'conll05st', TRGDICT_MD5))
     return word_dict, verb_dict, label_dict
 
 
@@ -219,7 +219,7 @@ def get_embedding():
     """
     Get the trained word vector based on Wikipedia corpus.
     """
-    return paddle.dataset.common.download(EMB_URL, 'conll05st', EMB_MD5)
+    return Paddle.python.paddle.dataset.common.download(EMB_URL, 'conll05st', EMB_MD5)
 
 
 def test():
@@ -236,15 +236,15 @@ def test():
     """
     word_dict, verb_dict, label_dict = get_dict()
     reader = corpus_reader(
-        paddle.dataset.common.download(DATA_URL, 'conll05st', DATA_MD5),
+        Paddle.python.paddle.dataset.common.download(DATA_URL, 'conll05st', DATA_MD5),
         words_name='conll05st-release/test.wsj/words/test.wsj.words.gz',
         props_name='conll05st-release/test.wsj/props/test.wsj.props.gz')
     return reader_creator(reader, word_dict, verb_dict, label_dict)
 
 
 def fetch():
-    paddle.dataset.common.download(WORDDICT_URL, 'conll05st', WORDDICT_MD5)
-    paddle.dataset.common.download(VERBDICT_URL, 'conll05st', VERBDICT_MD5)
-    paddle.dataset.common.download(TRGDICT_URL, 'conll05st', TRGDICT_MD5)
-    paddle.dataset.common.download(EMB_URL, 'conll05st', EMB_MD5)
-    paddle.dataset.common.download(DATA_URL, 'conll05st', DATA_MD5)
+    Paddle.python.paddle.dataset.common.download(WORDDICT_URL, 'conll05st', WORDDICT_MD5)
+    Paddle.python.paddle.dataset.common.download(VERBDICT_URL, 'conll05st', VERBDICT_MD5)
+    Paddle.python.paddle.dataset.common.download(TRGDICT_URL, 'conll05st', TRGDICT_MD5)
+    Paddle.python.paddle.dataset.common.download(EMB_URL, 'conll05st', EMB_MD5)
+    Paddle.python.paddle.dataset.common.download(DATA_URL, 'conll05st', DATA_MD5)

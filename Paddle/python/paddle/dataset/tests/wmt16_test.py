@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 from __future__ import print_function
 
-import paddle.dataset.wmt16
+import Paddle.python.paddle.dataset.wmt16
 import unittest
 
 
@@ -36,28 +36,28 @@ class TestWMT16(unittest.TestCase):
 
     def test_train(self):
         for idx, sample in enumerate(
-                paddle.dataset.wmt16.train(
+                Paddle.python.paddle.dataset.wmt16.train(
                     src_dict_size=100000, trg_dict_size=100000)()):
             if idx >= 10: break
             self.checkout_one_sample(sample)
 
     def test_test(self):
         for idx, sample in enumerate(
-                paddle.dataset.wmt16.test(
+                Paddle.python.paddle.dataset.wmt16.test(
                     src_dict_size=1000, trg_dict_size=1000)()):
             if idx >= 10: break
             self.checkout_one_sample(sample)
 
     def test_val(self):
         for idx, sample in enumerate(
-                paddle.dataset.wmt16.validation(
+                Paddle.python.paddle.dataset.wmt16.validation(
                     src_dict_size=1000, trg_dict_size=1000)()):
             if idx >= 10: break
             self.checkout_one_sample(sample)
 
     def test_get_dict(self):
         dict_size = 1000
-        word_dict = paddle.dataset.wmt16.get_dict("en", dict_size, True)
+        word_dict = Paddle.python.paddle.dataset.wmt16.get_dict("en", dict_size, True)
         self.assertEqual(len(word_dict), dict_size)
         self.assertEqual(word_dict[0], "<s>")
         self.assertEqual(word_dict[1], "<e>")

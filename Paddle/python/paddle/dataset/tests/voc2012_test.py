@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 from __future__ import print_function
 
-import paddle.dataset.voc2012
+import Paddle.python.paddle.dataset.voc2012
 import unittest
 
 
@@ -28,15 +28,15 @@ class TestVOC(unittest.TestCase):
         return sum
 
     def test_train(self):
-        count = self.check_reader(paddle.dataset.voc_seg.train())
+        count = self.check_reader(Paddle.python.paddle.dataset.voc_seg.train())
         self.assertEqual(count, 2913)
 
     def test_test(self):
-        count = self.check_reader(paddle.dataset.voc_seg.test())
+        count = self.check_reader(Paddle.python.paddle.dataset.voc_seg.test())
         self.assertEqual(count, 1464)
 
     def test_val(self):
-        count = self.check_reader(paddle.dataset.voc_seg.val())
+        count = self.check_reader(Paddle.python.paddle.dataset.voc_seg.val())
         self.assertEqual(count, 1449)
 
 

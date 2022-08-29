@@ -1,4 +1,4 @@
-# Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
+# Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
 
 from __future__ import print_function
 
-from paddle.fluid.layers.device import get_places
+from Paddle.python.paddle.fluid.layers.device import get_places
 import unittest
-import paddle.fluid as fluid
-import paddle
+import Paddle.python.paddle.fluid as fluid
+import Paddle.python.paddle
 import contextlib
 import math
 import numpy as np
@@ -151,9 +151,9 @@ def train(word_dict,
     adagrad = fluid.optimizer.Adagrad(learning_rate=0.002)
     adagrad.minimize(cost)
 
-    train_data = paddle.batch(
-        paddle.reader.shuffle(
-            paddle.dataset.imdb.train(word_dict), buf_size=1000),
+    train_data = Paddle.python.paddle.batch(
+        Paddle.python.paddle.reader.shuffle(
+            Paddle.python.paddle.dataset.imdb.train(word_dict), buf_size=1000),
         batch_size=BATCH_SIZE)
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
     exe = fluid.Executor(place)
@@ -181,16 +181,16 @@ def train(word_dict,
     if is_local:
         train_loop(fluid.default_main_program())
     else:
-        port = os.getenv("PADDLE_PSERVER_PORT", "6174")
-        pserver_ips = os.getenv("PADDLE_PSERVER_IPS")  # ip,ip...
+        port = os.getenv("Paddle.python.paddle_PSERVER_PORT", "6174")
+        pserver_ips = os.getenv("Paddle.python.paddle_PSERVER_IPS")  # ip,ip...
         eplist = []
         for ip in pserver_ips.split(","):
             eplist.append(':'.join([ip, port]))
         pserver_endpoints = ",".join(eplist)  # ip:port,ip:port...
-        trainers = int(os.getenv("PADDLE_TRAINERS"))
+        trainers = int(os.getenv("Paddle.python.paddle_TRAINERS"))
         current_endpoint = os.getenv("POD_IP") + ":" + port
-        trainer_id = int(os.getenv("PADDLE_TRAINER_ID"))
-        training_role = os.getenv("PADDLE_TRAINING_ROLE", "TRAINER")
+        trainer_id = int(os.getenv("Paddle.python.paddle_TRAINER_ID"))
+        training_role = os.getenv("Paddle.python.paddle_TRAINING_ROLE", "TRAINER")
         t = fluid.DistributeTranspiler()
         t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers)
         if training_role == "PSERVER":
@@ -270,7 +270,7 @@ def main(word_dict, net_method, use_cuda, parallel=False, save_dirname=None):
 class TestUnderstandSentiment(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.word_dict = paddle.dataset.imdb.word_dict()
+        cls.word_dict = Paddle.python.paddle.dataset.imdb.word_dict()
 
     @contextlib.contextmanager
     def new_program_scope(self):

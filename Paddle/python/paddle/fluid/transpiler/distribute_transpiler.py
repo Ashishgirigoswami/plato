@@ -1,4 +1,4 @@
-#   Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -149,18 +149,18 @@ class DistributeTranspilerConfig(object):
 
           Minimum number of splitted elements in block, default is 8192.
 
-          According to : https://github.com/PaddlePaddle/Paddle/issues/8638#issuecomment-369912156
+          According to : https://github.com/Paddle.python.paddlePaddle.python.paddle/Paddle.python.paddle/issues/8638#issuecomment-369912156
           We can use bandwidth effiently when data size is larger than 2MB.If you
           want to change it, please be sure you have read the slice_variable function. You can find
           the definition of slice_variable in
-          https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/transpiler/distribute_transpiler.py
+          https://github.com/Paddle.python.paddlePaddle.python.paddle/Paddle.python.paddle/blob/develop/python/Paddle.python.paddle/fluid/transpiler/distribute_transpiler.py
           .
 
     Examples:
         .. code-block:: python
 
-            from paddle.fluid.transpiler.ps_dispatcher import RoundRobin
-            import paddle.fluid as fluid
+            from Paddle.python.paddle.fluid.transpiler.ps_dispatcher import RoundRobin
+            import Paddle.python.paddle.fluid as fluid
 
             config = fluid.DistributeTranspilerConfig()
             config.slice_var_up = True
@@ -186,7 +186,7 @@ class DistributeTranspilerConfig(object):
 
     nccl_comm_num = 1
     #The picture here illustrates the principle:
-    #https://github.com/PaddlePaddle/Paddle/pull/17263#discussion_r285411396
+    #https://github.com/Paddle.python.paddlePaddle.python.paddle/Paddle.python.paddle/pull/17263#discussion_r285411396
     use_hierarchical_allreduce = False
     #Nccl ranks in a node when use hierarchical allreduce, it's setted to gpu cards' number in most cases.
     hierarchical_allreduce_inter_nranks = 0
@@ -876,7 +876,7 @@ class DistributeTranspiler(object):
         Examples:
             .. code-block:: python
 
-              import paddle.fluid as fluid
+              import Paddle.python.paddle.fluid as fluid
               #this is an example, find available endpoints in your case
               pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
               trainer_id = 0
@@ -1018,7 +1018,7 @@ class DistributeTranspiler(object):
         Examples:
             .. code-block:: python
 
-              import paddle.fluid as fluid
+              import Paddle.python.paddle.fluid as fluid
               #this is an example, find available endpoints in your case
               pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
               current_endpoint = "192.168.0.1:6174"
@@ -1282,7 +1282,7 @@ class DistributeTranspiler(object):
         Examples:
             .. code-block:: python
 
-              import paddle.fluid as fluid
+              import Paddle.python.paddle.fluid as fluid
               #this is an example, find available endpoints in your case
               pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
               current_endpoint = "192.168.0.1:6174"

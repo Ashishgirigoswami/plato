@@ -1,4 +1,4 @@
-#   Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,13 +18,13 @@ import math
 import sys
 import os
 import numpy as np
-import paddle
-import paddle.fluid as fluid
-import paddle.fluid.framework as framework
-import paddle.fluid.layers as layers
-import paddle.fluid.nets as nets
-from paddle.fluid.executor import Executor
-from paddle.fluid.optimizer import SGDOptimizer
+import Paddle.python.paddle
+import Paddle.python.paddle.fluid as fluid
+import Paddle.python.paddle.fluid.framework as framework
+import Paddle.python.paddle.fluid.layers as layers
+import Paddle.python.paddle.fluid.nets as nets
+from Paddle.python.paddle.fluid.executor import Executor
+from Paddle.python.paddle.fluid.optimizer import SGDOptimizer
 
 IS_SPARSE = True
 USE_GPU = False
@@ -35,7 +35,7 @@ def get_usr_combined_features():
     # FIXME(dzh) : old API integer_value(10) may has range check.
     # currently we don't have user configurated check.
 
-    USR_DICT_SIZE = paddle.dataset.movielens.max_user_id() + 1
+    USR_DICT_SIZE = Paddle.python.paddle.dataset.movielens.max_user_id() + 1
 
     uid = layers.data(name='user_id', shape=[1], dtype='int64')
 
@@ -60,7 +60,7 @@ def get_usr_combined_features():
 
     usr_gender_fc = layers.fc(input=usr_gender_emb, size=16)
 
-    USR_AGE_DICT_SIZE = len(paddle.dataset.movielens.age_table)
+    USR_AGE_DICT_SIZE = len(Paddle.python.paddle.dataset.movielens.age_table)
     usr_age_id = layers.data(name='age_id', shape=[1], dtype="int64")
 
     usr_age_emb = layers.embedding(
@@ -71,7 +71,7 @@ def get_usr_combined_features():
 
     usr_age_fc = layers.fc(input=usr_age_emb, size=16)
 
-    USR_JOB_DICT_SIZE = paddle.dataset.movielens.max_job_id() + 1
+    USR_JOB_DICT_SIZE = Paddle.python.paddle.dataset.movielens.max_job_id() + 1
     usr_job_id = layers.data(name='job_id', shape=[1], dtype="int64")
 
     usr_job_emb = layers.embedding(
@@ -92,7 +92,7 @@ def get_usr_combined_features():
 
 def get_mov_combined_features():
 
-    MOV_DICT_SIZE = paddle.dataset.movielens.max_movie_id() + 1
+    MOV_DICT_SIZE = Paddle.python.paddle.dataset.movielens.max_movie_id() + 1
 
     mov_id = layers.data(name='movie_id', shape=[1], dtype='int64')
 
@@ -105,7 +105,7 @@ def get_mov_combined_features():
 
     mov_fc = layers.fc(input=mov_emb, size=32)
 
-    CATEGORY_DICT_SIZE = len(paddle.dataset.movielens.movie_categories())
+    CATEGORY_DICT_SIZE = len(Paddle.python.paddle.dataset.movielens.movie_categories())
 
     category_id = layers.data(
         name='category_id', shape=[1], dtype='int64', lod_level=1)
@@ -116,7 +116,7 @@ def get_mov_combined_features():
     mov_categories_hidden = layers.sequence_pool(
         input=mov_categories_emb, pool_type="sum")
 
-    MOV_TITLE_DICT_SIZE = len(paddle.dataset.movielens.get_movie_title_dict())
+    MOV_TITLE_DICT_SIZE = len(Paddle.python.paddle.dataset.movielens.get_movie_title_dict())
 
     mov_title_id = layers.data(
         name='movie_title', shape=[1], dtype='int64', lod_level=1)
@@ -168,12 +168,12 @@ def train(use_cuda, save_dirname, is_local=True):
 
     exe = Executor(place)
 
-    train_reader = paddle.batch(
-        paddle.reader.shuffle(
-            paddle.dataset.movielens.train(), buf_size=8192),
+    train_reader = Paddle.python.paddle.batch(
+        Paddle.python.paddle.reader.shuffle(
+            Paddle.python.paddle.dataset.movielens.train(), buf_size=8192),
         batch_size=BATCH_SIZE)
-    test_reader = paddle.batch(
-        paddle.dataset.movielens.test(), batch_size=BATCH_SIZE)
+    test_reader = Paddle.python.paddle.batch(
+        Paddle.python.paddle.dataset.movielens.test(), batch_size=BATCH_SIZE)
 
     feed_order = [
         'user_id', 'gender_id', 'age_id', 'job_id', 'movie_id', 'category_id',
@@ -222,16 +222,16 @@ def train(use_cuda, save_dirname, is_local=True):
     if is_local:
         train_loop(fluid.default_main_program())
     else:
-        port = os.getenv("PADDLE_PSERVER_PORT", "6174")
-        pserver_ips = os.getenv("PADDLE_PSERVER_IPS")  # ip,ip...
+        port = os.getenv("Paddle.python.paddle_PSERVER_PORT", "6174")
+        pserver_ips = os.getenv("Paddle.python.paddle_PSERVER_IPS")  # ip,ip...
         eplist = []
         for ip in pserver_ips.split(","):
             eplist.append(':'.join([ip, port]))
         pserver_endpoints = ",".join(eplist)  # ip:port,ip:port...
-        trainers = int(os.getenv("PADDLE_TRAINERS"))
+        trainers = int(os.getenv("Paddle.python.paddle_TRAINERS"))
         current_endpoint = os.getenv("POD_IP") + ":" + port
-        trainer_id = int(os.getenv("PADDLE_TRAINER_ID"))
-        training_role = os.getenv("PADDLE_TRAINING_ROLE", "TRAINER")
+        trainer_id = int(os.getenv("Paddle.python.paddle_TRAINER_ID"))
+        training_role = os.getenv("Paddle.python.paddle_TRAINING_ROLE", "TRAINER")
         t = fluid.DistributeTranspiler()
         t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers)
         if training_role == "PSERVER":
@@ -260,7 +260,7 @@ def infer(use_cuda, save_dirname=None):
         [inference_program, feed_target_names,
          fetch_targets] = fluid.io.load_inference_model(save_dirname, exe)
 
-        # Use the first data from paddle.dataset.movielens.test() as input
+        # Use the first data from Paddle.python.paddle.dataset.movielens.test() as input
         assert feed_target_names[0] == "user_id"
         # Use create_lod_tensor(data, recursive_sequence_lengths, place) API
         # to generate LoD Tensor where `data` is a list of sequences of index

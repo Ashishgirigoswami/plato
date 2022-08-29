@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 from __future__ import print_function
 
-import paddle.dataset.imdb
+import Paddle.python.paddle.dataset.imdb
 import unittest
 import re
 
@@ -32,13 +32,13 @@ class TestIMDB(unittest.TestCase):
 
     def test_build_dict(self):
         if self.word_idx == None:
-            self.word_idx = paddle.dataset.imdb.build_dict(TRAIN_PATTERN, 150)
+            self.word_idx = Paddle.python.paddle.dataset.imdb.build_dict(TRAIN_PATTERN, 150)
 
         self.assertEqual(len(self.word_idx), 7036)
 
     def check_dataset(self, dataset, expected_size):
         if self.word_idx == None:
-            self.word_idx = paddle.dataset.imdb.build_dict(TRAIN_PATTERN, 150)
+            self.word_idx = Paddle.python.paddle.dataset.imdb.build_dict(TRAIN_PATTERN, 150)
 
         sum = 0
         for l in dataset(self.word_idx):
@@ -47,10 +47,10 @@ class TestIMDB(unittest.TestCase):
         self.assertEqual(sum, expected_size)
 
     def test_train(self):
-        self.check_dataset(paddle.dataset.imdb.train, 25000)
+        self.check_dataset(Paddle.python.paddle.dataset.imdb.train, 25000)
 
     def test_test(self):
-        self.check_dataset(paddle.dataset.imdb.test, 25000)
+        self.check_dataset(Paddle.python.paddle.dataset.imdb.test, 25000)
 
 
 if __name__ == '__main__':

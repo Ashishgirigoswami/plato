@@ -1,7 +1,7 @@
 # /usr/bin/env python
 # -*- coding:utf-8 -*-
 
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ from __future__ import print_function
 
 import unittest
 import nltk
-import paddle.dataset.sentiment as st
+import Paddle.python.paddle.dataset.sentiment as st
 from nltk.corpus import movie_reviews
 
 
@@ -30,7 +30,7 @@ class TestSentimentMethods(unittest.TestCase):
                           ('of', 5), ('to', 6), ("'", 7), ('is', 8), ('in', 9)]
         for idx, each in enumerate(word_dict):
             self.assertEqual(each, test_word_list[idx])
-        self.assertTrue("/root/.cache/paddle/dataset" in nltk.data.path)
+        self.assertTrue("/root/.cache/Paddle.python.paddle/dataset" in nltk.data.path)
 
     def test_sort_files(self):
         last_label = ''

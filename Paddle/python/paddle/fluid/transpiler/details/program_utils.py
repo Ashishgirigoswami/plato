@@ -1,4 +1,4 @@
-# Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
+# Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,8 +16,8 @@ from __future__ import print_function
 
 import six
 
-from paddle.fluid import core
-import paddle
+from Paddle.python.paddle.fluid import core
+import Paddle.python.paddle
 
 
 def delete_ops(block, ops):
@@ -76,7 +76,7 @@ def variable_to_code(var):
         var_str = "{name} : fluid.{type})".\
             format(i="{", e="}", name=var.name, type=var.type)
 
-    if type(var) == paddle.fluid.framework.Parameter:
+    if type(var) == Paddle.python.paddle.fluid.framework.Parameter:
         if var.trainable:
             var_str = "trainable parameter " + var_str
         else:
@@ -195,7 +195,7 @@ def program_to_code(prog, fout=None, skip_op_callstack=True):
         prog : A fluid program.
 
     An example result like bellow:
-    https://github.com/PaddlePaddle/Paddle/pull/12673
+    https://github.com/Paddle.python.paddlePaddle.python.paddle/Paddle.python.paddle/pull/12673
     """
     block_idx = 0
     for block in prog.blocks:

@@ -1,4 +1,4 @@
-#   Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserve.
+#   Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserve.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
 
 from __future__ import print_function
 
-import paddle
-import paddle.fluid as fluid
-from paddle.fluid.layers.device import get_places
+import Paddle.python.paddle
+import Paddle.python.paddle.fluid as fluid
+from Paddle.python.paddle.fluid.layers.device import get_places
 import unittest
 import os
 import numpy as np
@@ -70,7 +70,7 @@ def train(use_cuda, is_sparse, is_parallel, save_dirname, is_local=True):
         avg_cost = fluid.layers.mean(cost)
         return avg_cost, predict_word
 
-    word_dict = paddle.dataset.imikolov.build_dict()
+    word_dict = Paddle.python.paddle.dataset.imikolov.build_dict()
     dict_size = len(word_dict)
 
     first_word = fluid.layers.data(name='firstw', shape=[1], dtype='int64')
@@ -88,8 +88,8 @@ def train(use_cuda, is_sparse, is_parallel, save_dirname, is_local=True):
     sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.001)
     sgd_optimizer.minimize(avg_cost)
 
-    train_reader = paddle.batch(
-        paddle.dataset.imikolov.train(word_dict, N), BATCH_SIZE)
+    train_reader = Paddle.python.paddle.batch(
+        Paddle.python.paddle.dataset.imikolov.train(word_dict, N), BATCH_SIZE)
 
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
     exe = fluid.Executor(place)
@@ -119,16 +119,16 @@ def train(use_cuda, is_sparse, is_parallel, save_dirname, is_local=True):
     if is_local:
         train_loop(fluid.default_main_program())
     else:
-        port = os.getenv("PADDLE_PSERVER_PORT", "6174")
-        pserver_ips = os.getenv("PADDLE_PSERVER_IPS")  # ip,ip...
+        port = os.getenv("Paddle.python.paddle_PSERVER_PORT", "6174")
+        pserver_ips = os.getenv("Paddle.python.paddle_PSERVER_IPS")  # ip,ip...
         eplist = []
         for ip in pserver_ips.split(","):
             eplist.append(':'.join([ip, port]))
         pserver_endpoints = ",".join(eplist)  # ip:port,ip:port...
-        trainers = int(os.getenv("PADDLE_TRAINERS"))
+        trainers = int(os.getenv("Paddle.python.paddle_TRAINERS"))
         current_endpoint = os.getenv("POD_IP") + ":" + port
-        trainer_id = int(os.getenv("PADDLE_TRAINER_ID"))
-        training_role = os.getenv("PADDLE_TRAINING_ROLE", "TRAINER")
+        trainer_id = int(os.getenv("Paddle.python.paddle_TRAINER_ID"))
+        training_role = os.getenv("Paddle.python.paddle_TRAINING_ROLE", "TRAINER")
         t = fluid.DistributeTranspiler()
         t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers)
         if training_role == "PSERVER":
@@ -157,7 +157,7 @@ def infer(use_cuda, save_dirname=None):
         [inference_program, feed_target_names,
          fetch_targets] = fluid.io.load_inference_model(save_dirname, exe)
 
-        word_dict = paddle.dataset.imikolov.build_dict()
+        word_dict = Paddle.python.paddle.dataset.imikolov.build_dict()
         dict_size = len(word_dict)
 
         # Setup inputs by creating 4 LoDTensors representing 4 words. Here each word
@@ -197,11 +197,11 @@ def infer(use_cuda, save_dirname=None):
                           return_numpy=False)
 
         def to_infer_tensor(lod_tensor):
-            infer_tensor = fluid.core.PaddleTensor()
+            infer_tensor = fluid.core.Paddle.python.paddleTensor()
             infer_tensor.lod = lod_tensor.lod()
-            infer_tensor.data = fluid.core.PaddleBuf(np.array(lod_tensor))
+            infer_tensor.data = fluid.core.Paddle.python.paddleBuf(np.array(lod_tensor))
             infer_tensor.shape = lod_tensor.shape()
-            infer_tensor.dtype = fluid.core.PaddleDType.INT64
+            infer_tensor.dtype = fluid.core.Paddle.python.paddleDType.INT64
             return infer_tensor
 
         infer_inputs = [first_word, second_word, third_word, fourth_word]

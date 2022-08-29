@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,12 +16,12 @@ imikolov's simple dataset.
 
 This module will download dataset from
 http://www.fit.vutbr.cz/~imikolov/rnnlm/ and parse training set and test set
-into paddle reader creators.
+into Paddle.python.paddle reader creators.
 """
 
 from __future__ import print_function
 
-import paddle.dataset.common
+import Paddle.python.paddle.dataset.common
 import collections
 import tarfile
 import six
@@ -59,9 +59,9 @@ def build_dict(min_word_freq=50):
     train_filename = './simple-examples/data/ptb.train.txt'
     test_filename = './simple-examples/data/ptb.valid.txt'
     with tarfile.open(
-            paddle.dataset.common.download(paddle.dataset.imikolov.URL,
+            Paddle.python.paddle.dataset.common.download(Paddle.python.paddle.dataset.imikolov.URL,
                                            'imikolov',
-                                           paddle.dataset.imikolov.MD5)) as tf:
+                                           Paddle.python.paddle.dataset.imikolov.MD5)) as tf:
         trainf = tf.extractfile(train_filename)
         testf = tf.extractfile(test_filename)
         word_freq = word_count(testf, word_count(trainf))
@@ -84,9 +84,9 @@ def build_dict(min_word_freq=50):
 def reader_creator(filename, word_idx, n, data_type):
     def reader():
         with tarfile.open(
-                paddle.dataset.common.download(
-                    paddle.dataset.imikolov.URL, 'imikolov',
-                    paddle.dataset.imikolov.MD5)) as tf:
+                Paddle.python.paddle.dataset.common.download(
+                    Paddle.python.paddle.dataset.imikolov.URL, 'imikolov',
+                    Paddle.python.paddle.dataset.imikolov.MD5)) as tf:
             f = tf.extractfile(filename)
 
             UNK = word_idx['<unk>']
@@ -152,4 +152,4 @@ def test(word_idx, n, data_type=DataType.NGRAM):
 
 
 def fetch():
-    paddle.dataset.common.download(URL, "imikolov", MD5)
+    Paddle.python.paddle.dataset.common.download(URL, "imikolov", MD5)

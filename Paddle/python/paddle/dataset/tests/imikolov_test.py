@@ -1,4 +1,4 @@
-#   Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
 
 from __future__ import print_function
 
-import paddle.dataset.imikolov
+import Paddle.python.paddle.dataset.imikolov
 import unittest
 
-WORD_DICT = paddle.dataset.imikolov.build_dict()
+WORD_DICT = Paddle.python.paddle.dataset.imikolov.build_dict()
 
 
 class TestMikolov(unittest.TestCase):
@@ -27,7 +27,7 @@ class TestMikolov(unittest.TestCase):
 
     def test_train(self):
         n = 5
-        self.check_reader(paddle.dataset.imikolov.train(WORD_DICT, n), n)
+        self.check_reader(Paddle.python.paddle.dataset.imikolov.train(WORD_DICT, n), n)
 
         first_line = 'aer banknote berlitz calloway centrust cluett fromstein '\
             'gitano guterman hydro-quebec ipo kia memotec mlx nahb punts '\
@@ -36,16 +36,16 @@ class TestMikolov(unittest.TestCase):
             WORD_DICT.get(ch, WORD_DICT['<unk>'])
             for ch in first_line.split(' ')
         ]
-        for l in paddle.dataset.imikolov.train(
+        for l in Paddle.python.paddle.dataset.imikolov.train(
                 WORD_DICT, n=-1,
-                data_type=paddle.dataset.imikolov.DataType.SEQ)():
+                data_type=Paddle.python.paddle.dataset.imikolov.DataType.SEQ)():
             read_line = l[0][1:]
             break
         self.assertEqual(first_line, read_line)
 
     def test_test(self):
         n = 5
-        self.check_reader(paddle.dataset.imikolov.test(WORD_DICT, n), n)
+        self.check_reader(Paddle.python.paddle.dataset.imikolov.test(WORD_DICT, n), n)
 
         first_line = 'consumers may want to move their telephones a little '\
                 'closer to the tv set'
@@ -53,9 +53,9 @@ class TestMikolov(unittest.TestCase):
             WORD_DICT.get(ch, WORD_DICT['<unk>'])
             for ch in first_line.split(' ')
         ]
-        for l in paddle.dataset.imikolov.test(
+        for l in Paddle.python.paddle.dataset.imikolov.test(
                 WORD_DICT, n=-1,
-                data_type=paddle.dataset.imikolov.DataType.SEQ)():
+                data_type=Paddle.python.paddle.dataset.imikolov.DataType.SEQ)():
             read_line = l[0][1:]
             break
         self.assertEqual(first_line, read_line)

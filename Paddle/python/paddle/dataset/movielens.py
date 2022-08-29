@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ Movielens 1-M dataset contains 1 million ratings from 6000 users on 4000
 movies, which was collected by GroupLens Research. This module will download
 Movielens 1-M dataset from
 http://files.grouplens.org/datasets/movielens/ml-1m.zip and parse training
-set and test set into paddle reader creators.
+set and test set into Paddle.python.paddle reader creators.
 
 """
 
@@ -26,12 +26,12 @@ from __future__ import print_function
 
 import numpy as np
 import zipfile
-import paddle.dataset.common
+import Paddle.python.paddle.dataset.common
 import re
 import random
 import functools
 import six
-import paddle.compat as cpt
+import Paddle.python.paddle.compat as cpt
 
 __all__ = [
     'train', 'test', 'get_movie_title_dict', 'max_movie_id', 'max_user_id',
@@ -105,7 +105,7 @@ USER_INFO = None
 
 
 def __initialize_meta_info__():
-    fn = paddle.dataset.common.download(URL, "movielens", MD5)
+    fn = Paddle.python.paddle.dataset.common.download(URL, "movielens", MD5)
     global MOVIE_INFO
     if MOVIE_INFO is None:
         pattern = re.compile(r'^(.*)\((\d+)\)$')
@@ -256,7 +256,7 @@ def unittest():
 
 
 def fetch():
-    paddle.dataset.common.download(URL, "movielens", MD5)
+    Paddle.python.paddle.dataset.common.download(URL, "movielens", MD5)
 
 
 if __name__ == '__main__':

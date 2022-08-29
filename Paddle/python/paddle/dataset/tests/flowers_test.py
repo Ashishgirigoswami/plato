@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 from __future__ import print_function
 
-import paddle.dataset.flowers
+import Paddle.python.paddle.dataset.flowers
 import unittest
 
 
@@ -32,19 +32,19 @@ class TestFlowers(unittest.TestCase):
 
     def test_train(self):
         instances, max_label_value = self.check_reader(
-            paddle.dataset.flowers.train())
+            Paddle.python.paddle.dataset.flowers.train())
         self.assertEqual(instances, 6149)
         self.assertEqual(max_label_value, 102)
 
     def test_test(self):
         instances, max_label_value = self.check_reader(
-            paddle.dataset.flowers.test())
+            Paddle.python.paddle.dataset.flowers.test())
         self.assertEqual(instances, 1020)
         self.assertEqual(max_label_value, 102)
 
     def test_valid(self):
         instances, max_label_value = self.check_reader(
-            paddle.dataset.flowers.valid())
+            Paddle.python.paddle.dataset.flowers.valid())
         self.assertEqual(instances, 1020)
         self.assertEqual(max_label_value, 102)
 

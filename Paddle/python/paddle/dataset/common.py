@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import shutil
 import six
 import sys
 import importlib
-import paddle.dataset
+import Paddle.python.paddle.dataset
 import six.moves.cPickle as pickle
 import glob
 
@@ -34,7 +34,7 @@ __all__ = [
     'cluster_files_reader',
 ]
 
-DATA_HOME = os.path.expanduser('~/.cache/paddle/dataset')
+DATA_HOME = os.path.expanduser('~/.cache/Paddle.python.paddle/dataset')
 
 
 # When running unit tests, there could be multiple processes that
@@ -113,12 +113,12 @@ def download(url, module_name, md5sum, save_name=None):
 
 def fetch_all():
     for module_name in [
-            x for x in dir(paddle.dataset) if not x.startswith("__")
+            x for x in dir(Paddle.python.paddle.dataset) if not x.startswith("__")
     ]:
         if "fetch" in dir(
-                importlib.import_module("paddle.dataset.%s" % module_name)):
+                importlib.import_module("Paddle.python.paddle.dataset.%s" % module_name)):
             getattr(
-                importlib.import_module("paddle.dataset.%s" % module_name),
+                importlib.import_module("Paddle.python.paddle.dataset.%s" % module_name),
                 "fetch")()
 
 
@@ -126,7 +126,7 @@ def split(reader, line_count, suffix="%05d.pickle", dumper=pickle.dump):
     """
     you can call the function as:
 
-    split(paddle.dataset.cifar.train10(), line_count=1000,
+    split(Paddle.python.paddle.dataset.cifar.train10(), line_count=1000,
         suffix="imikolov-train-%05d.pickle")
 
     the output files as:

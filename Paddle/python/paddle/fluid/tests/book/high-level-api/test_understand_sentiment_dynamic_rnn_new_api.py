@@ -1,4 +1,4 @@
-# Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
+# Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
 
 from __future__ import print_function
 
-import paddle
-import paddle.fluid as fluid
+import Paddle.python.paddle
+import Paddle.python.paddle.fluid as fluid
 import sys
 try:
-    from paddle.fluid.contrib.trainer import *
-    from paddle.fluid.contrib.inferencer import *
+    from Paddle.python.paddle.fluid.contrib.trainer import *
+    from Paddle.python.paddle.fluid.contrib.inferencer import *
 except ImportError:
     print(
-        "In the fluid 1.0, the trainer and inferencer are moving to paddle.fluid.contrib",
+        "In the fluid 1.0, the trainer and inferencer are moving to Paddle.python.paddle.fluid.contrib",
         file=sys.stderr)
-    from paddle.fluid.trainer import *
-    from paddle.fluid.inferencer import *
+    from Paddle.python.paddle.fluid.trainer import *
+    from Paddle.python.paddle.fluid.inferencer import *
 from functools import partial
 import numpy as np
 
@@ -96,7 +96,7 @@ def optimizer_func():
 def train(use_cuda, train_program, params_dirname):
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
 
-    word_dict = paddle.dataset.imdb.word_dict()
+    word_dict = Paddle.python.paddle.dataset.imdb.word_dict()
     trainer = Trainer(
         train_func=partial(train_program, word_dict),
         place=place,
@@ -104,8 +104,8 @@ def train(use_cuda, train_program, params_dirname):
 
     def event_handler(event):
         if isinstance(event, EndEpochEvent):
-            test_reader = paddle.batch(
-                paddle.dataset.imdb.test(word_dict), batch_size=BATCH_SIZE)
+            test_reader = Paddle.python.paddle.batch(
+                Paddle.python.paddle.dataset.imdb.test(word_dict), batch_size=BATCH_SIZE)
             avg_cost, acc = trainer.test(
                 reader=test_reader, feed_order=['words', 'label'])
 
@@ -128,9 +128,9 @@ def train(use_cuda, train_program, params_dirname):
                 trainer.save_params(params_dirname)
                 trainer.stop()
 
-    train_reader = paddle.batch(
-        paddle.reader.shuffle(
-            paddle.dataset.imdb.train(word_dict), buf_size=25000),
+    train_reader = Paddle.python.paddle.batch(
+        Paddle.python.paddle.reader.shuffle(
+            Paddle.python.paddle.dataset.imdb.train(word_dict), buf_size=25000),
         batch_size=BATCH_SIZE)
 
     trainer.train(
@@ -142,7 +142,7 @@ def train(use_cuda, train_program, params_dirname):
 
 def infer(use_cuda, inference_program, params_dirname=None):
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
-    word_dict = paddle.dataset.imdb.word_dict()
+    word_dict = Paddle.python.paddle.dataset.imdb.word_dict()
 
     inferencer = Inferencer(
         infer_func=partial(inference_program, word_dict),

@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,12 +15,12 @@
 MNIST dataset.
 
 This module will download dataset from http://yann.lecun.com/exdb/mnist/ and
-parse training set and test set into paddle reader creators.
+parse training set and test set into Paddle.python.paddle reader creators.
 """
 
 from __future__ import print_function
 
-import paddle.dataset.common
+import Paddle.python.paddle.dataset.common
 import gzip
 import numpy
 import struct
@@ -99,9 +99,9 @@ def train():
     :rtype: callable
     """
     return reader_creator(
-        paddle.dataset.common.download(TRAIN_IMAGE_URL, 'mnist',
+        Paddle.python.paddle.dataset.common.download(TRAIN_IMAGE_URL, 'mnist',
                                        TRAIN_IMAGE_MD5),
-        paddle.dataset.common.download(TRAIN_LABEL_URL, 'mnist',
+        Paddle.python.paddle.dataset.common.download(TRAIN_LABEL_URL, 'mnist',
                                        TRAIN_LABEL_MD5), 100)
 
 
@@ -116,13 +116,13 @@ def test():
     :rtype: callable
     """
     return reader_creator(
-        paddle.dataset.common.download(TEST_IMAGE_URL, 'mnist', TEST_IMAGE_MD5),
-        paddle.dataset.common.download(TEST_LABEL_URL, 'mnist', TEST_LABEL_MD5),
+        Paddle.python.paddle.dataset.common.download(TEST_IMAGE_URL, 'mnist', TEST_IMAGE_MD5),
+        Paddle.python.paddle.dataset.common.download(TEST_LABEL_URL, 'mnist', TEST_LABEL_MD5),
         100)
 
 
 def fetch():
-    paddle.dataset.common.download(TRAIN_IMAGE_URL, 'mnist', TRAIN_IMAGE_MD5)
-    paddle.dataset.common.download(TRAIN_LABEL_URL, 'mnist', TRAIN_LABEL_MD5)
-    paddle.dataset.common.download(TEST_IMAGE_URL, 'mnist', TEST_IMAGE_MD5)
-    paddle.dataset.common.download(TEST_LABEL_URL, 'mnist', TEST_LABEL_MD5)
+    Paddle.python.paddle.dataset.common.download(TRAIN_IMAGE_URL, 'mnist', TRAIN_IMAGE_MD5)
+    Paddle.python.paddle.dataset.common.download(TRAIN_LABEL_URL, 'mnist', TRAIN_LABEL_MD5)
+    Paddle.python.paddle.dataset.common.download(TEST_IMAGE_URL, 'mnist', TEST_IMAGE_MD5)
+    Paddle.python.paddle.dataset.common.download(TEST_LABEL_URL, 'mnist', TEST_LABEL_MD5)

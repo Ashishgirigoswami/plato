@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 CIFAR dataset.
 
 This module will download dataset from https://dataset.bj.bcebos.com/cifar/cifar-10-python.tar.gz and https://dataset.bj.bcebos.com/cifar/cifar-100-python.tar.gz, parse train/test set into
-paddle reader creators.
+Paddle.python.paddle reader creators.
 
 The CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes,
 with 6000 images per class. There are 50000 training images and 10000 test
@@ -31,7 +31,7 @@ from __future__ import print_function
 
 import itertools
 import numpy
-import paddle.dataset.common
+import Paddle.python.paddle.dataset.common
 import tarfile
 import six
 from six.moves import cPickle as pickle
@@ -86,7 +86,7 @@ def train100():
     :rtype: callable
     """
     return reader_creator(
-        paddle.dataset.common.download(CIFAR100_URL, 'cifar', CIFAR100_MD5),
+        Paddle.python.paddle.dataset.common.download(CIFAR100_URL, 'cifar', CIFAR100_MD5),
         'train')
 
 
@@ -101,7 +101,7 @@ def test100():
     :rtype: callable
     """
     return reader_creator(
-        paddle.dataset.common.download(CIFAR100_URL, 'cifar', CIFAR100_MD5),
+        Paddle.python.paddle.dataset.common.download(CIFAR100_URL, 'cifar', CIFAR100_MD5),
         'test')
 
 
@@ -118,7 +118,7 @@ def train10(cycle=False):
     :rtype: callable
     """
     return reader_creator(
-        paddle.dataset.common.download(CIFAR10_URL, 'cifar', CIFAR10_MD5),
+        Paddle.python.paddle.dataset.common.download(CIFAR10_URL, 'cifar', CIFAR10_MD5),
         'data_batch',
         cycle=cycle)
 
@@ -136,11 +136,11 @@ def test10(cycle=False):
     :rtype: callable
     """
     return reader_creator(
-        paddle.dataset.common.download(CIFAR10_URL, 'cifar', CIFAR10_MD5),
+        Paddle.python.paddle.dataset.common.download(CIFAR10_URL, 'cifar', CIFAR10_MD5),
         'test_batch',
         cycle=cycle)
 
 
 def fetch():
-    paddle.dataset.common.download(CIFAR10_URL, 'cifar', CIFAR10_MD5)
-    paddle.dataset.common.download(CIFAR100_URL, 'cifar', CIFAR100_MD5)
+    Paddle.python.paddle.dataset.common.download(CIFAR10_URL, 'cifar', CIFAR10_MD5)
+    Paddle.python.paddle.dataset.common.download(CIFAR100_URL, 'cifar', CIFAR100_MD5)

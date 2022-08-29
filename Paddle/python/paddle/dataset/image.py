@@ -1,4 +1,4 @@
-#   Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ the image layout as follows.
 
   - The abbreviations: C=channel, H=Height, W=Width
   - The default layout of image opened by cv2 or PIL is HWC.
-    PaddlePaddle only supports the CHW layout. And CHW is simply
+    Paddle.python.paddlePaddle.python.paddle only supports the CHW layout. And CHW is simply
     a transpose of HWC. It must transpose the input image.
 
 - Color format: RGB or BGR
@@ -69,8 +69,8 @@ def _check_cv2():
     if cv2 is None:
         import sys
         sys.stderr.write(
-            '''Warning with paddle image module: opencv-python should be imported,
-         or paddle image module could NOT work; please install opencv-python first.'''
+            '''Warning with Paddle.python.paddle image module: opencv-python should be imported,
+         or Paddle.python.paddle image module could NOT work; please install opencv-python first.'''
         )
         return False
     else:

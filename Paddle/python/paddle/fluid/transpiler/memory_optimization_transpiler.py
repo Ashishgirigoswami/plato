@@ -1,4 +1,4 @@
-#   Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ def memory_optimize(input_program,
     memory optimization strategies are enabled by default.
     """
     logging.warn(
-        'Caution! paddle.fluid.memory_optimize() is deprecated '
+        'Caution! Paddle.python.paddle.fluid.memory_optimize() is deprecated '
         'and not maintained any more, since it is not stable!\n'
         'This API would not take any memory optimizations on your Program '
         'now, since we have provided default strategies for you.\n'
@@ -44,5 +44,5 @@ def release_memory(input_program, skip_opt_set=None):
     This API is deprecated since 1.6. Please do not use it. The better
     memory optimization strategies are enabled by default.
     """
-    logging.warn('paddle.fluid.release_memory() is deprecated, it would not'
+    logging.warn('Paddle.python.paddle.fluid.release_memory() is deprecated, it would not'
                  ' take any memory release on your program')

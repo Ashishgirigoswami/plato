@@ -1,4 +1,4 @@
-#   Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserve.
+#   Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserve.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
 
 from __future__ import print_function
 
-import paddle
-import paddle.fluid as fluid
+import Paddle.python.paddle
+import Paddle.python.paddle.fluid as fluid
 import sys
 try:
-    from paddle.fluid.contrib.trainer import *
-    from paddle.fluid.contrib.inferencer import *
+    from Paddle.python.paddle.fluid.contrib.trainer import *
+    from Paddle.python.paddle.fluid.contrib.inferencer import *
 except ImportError:
     print(
-        "In the fluid 1.0, the trainer and inferencer are moving to paddle.fluid.contrib",
+        "In the fluid 1.0, the trainer and inferencer are moving to Paddle.python.paddle.fluid.contrib",
         file=sys.stderr)
-    from paddle.fluid.trainer import *
-    from paddle.fluid.inferencer import *
+    from Paddle.python.paddle.fluid.trainer import *
+    from Paddle.python.paddle.fluid.inferencer import *
 import numpy as np
 import math
 import sys
@@ -37,7 +37,7 @@ HIDDEN_SIZE = 256
 N = 5
 BATCH_SIZE = 32
 
-word_dict = paddle.dataset.imikolov.build_dict()
+word_dict = Paddle.python.paddle.dataset.imikolov.build_dict()
 dict_size = len(word_dict)
 
 
@@ -97,10 +97,10 @@ def optimizer_func():
 
 
 def train(use_cuda, train_program, params_dirname):
-    train_reader = paddle.batch(
-        paddle.dataset.imikolov.train(word_dict, N), BATCH_SIZE)
-    test_reader = paddle.batch(
-        paddle.dataset.imikolov.test(word_dict, N), BATCH_SIZE)
+    train_reader = Paddle.python.paddle.batch(
+        Paddle.python.paddle.dataset.imikolov.train(word_dict, N), BATCH_SIZE)
+    test_reader = Paddle.python.paddle.batch(
+        Paddle.python.paddle.dataset.imikolov.test(word_dict, N), BATCH_SIZE)
 
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
 

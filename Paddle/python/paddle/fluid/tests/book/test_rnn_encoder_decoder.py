@@ -1,4 +1,4 @@
-#   Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,20 +15,20 @@
 from __future__ import print_function
 
 import numpy as np
-import paddle
-import paddle.fluid as fluid
-import paddle.fluid.core as core
-import paddle.fluid.framework as framework
-import paddle.fluid.layers as layers
+import Paddle.python.paddle
+import Paddle.python.paddle.fluid as fluid
+import Paddle.python.paddle.fluid.core as core
+import Paddle.python.paddle.fluid.framework as framework
+import Paddle.python.paddle.fluid.layers as layers
 import contextlib
 import math
 import sys
 import unittest
-from paddle.fluid.executor import Executor
+from Paddle.python.paddle.fluid.executor import Executor
 
 dict_size = 30000
 source_dict_dim = target_dict_dim = dict_size
-src_dict, trg_dict = paddle.dataset.wmt14.get_dict(dict_size)
+src_dict, trg_dict = Paddle.python.paddle.dataset.wmt14.get_dict(dict_size)
 hidden_dim = 32
 embedding_dim = 16
 batch_size = 10
@@ -160,9 +160,9 @@ def train(use_cuda, save_dirname=None):
     optimizer = fluid.optimizer.Adagrad(learning_rate=1e-4)
     optimizer.minimize(avg_cost)
 
-    train_data = paddle.batch(
-        paddle.reader.shuffle(
-            paddle.dataset.wmt14.train(dict_size), buf_size=1000),
+    train_data = Paddle.python.paddle.batch(
+        Paddle.python.paddle.reader.shuffle(
+            Paddle.python.paddle.dataset.wmt14.train(dict_size), buf_size=1000),
         batch_size=batch_size)
 
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()

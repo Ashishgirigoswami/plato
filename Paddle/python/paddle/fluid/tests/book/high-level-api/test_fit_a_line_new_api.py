@@ -1,4 +1,4 @@
-#   Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
 
 from __future__ import print_function
 
-import paddle
-import paddle.fluid as fluid
+import Paddle.python.paddle
+import Paddle.python.paddle.fluid as fluid
 import sys
 try:
-    from paddle.fluid.contrib.trainer import *
-    from paddle.fluid.contrib.inferencer import *
+    from Paddle.python.paddle.fluid.contrib.trainer import *
+    from Paddle.python.paddle.fluid.contrib.inferencer import *
 except ImportError:
     print(
-        "In the fluid 1.0, the trainer and inferencer are moving to paddle.fluid.contrib",
+        "In the fluid 1.0, the trainer and inferencer are moving to Paddle.python.paddle.fluid.contrib",
         file=sys.stderr)
-    from paddle.fluid.trainer import *
-    from paddle.fluid.inferencer import *
+    from Paddle.python.paddle.fluid.trainer import *
+    from Paddle.python.paddle.fluid.inferencer import *
 import contextlib
 import numpy
 import unittest
@@ -33,14 +33,14 @@ import unittest
 # train reader
 BATCH_SIZE = 20
 
-train_reader = paddle.batch(
-    paddle.reader.shuffle(
-        paddle.dataset.uci_housing.train(), buf_size=500),
+train_reader = Paddle.python.paddle.batch(
+    Paddle.python.paddle.reader.shuffle(
+        Paddle.python.paddle.dataset.uci_housing.train(), buf_size=500),
     batch_size=BATCH_SIZE)
 
-test_reader = paddle.batch(
-    paddle.reader.shuffle(
-        paddle.dataset.uci_housing.test(), buf_size=500),
+test_reader = Paddle.python.paddle.batch(
+    Paddle.python.paddle.reader.shuffle(
+        Paddle.python.paddle.dataset.uci_housing.test(), buf_size=500),
     batch_size=BATCH_SIZE)
 
 
@@ -131,8 +131,8 @@ def infer_by_saved_model(use_cuda, save_dirname=None):
         # The input data should be >= 0
         batch_size = 10
 
-        test_reader = paddle.batch(
-            paddle.dataset.uci_housing.test(), batch_size=batch_size)
+        test_reader = Paddle.python.paddle.batch(
+            Paddle.python.paddle.dataset.uci_housing.test(), batch_size=batch_size)
 
         test_data = next(test_reader())
         test_feat = numpy.array(

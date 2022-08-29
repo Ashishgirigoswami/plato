@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -36,8 +36,8 @@ import tarfile
 import gzip
 from collections import defaultdict
 
-import paddle.dataset.common
-import paddle.compat as cpt
+import Paddle.python.paddle.dataset.common
+import Paddle.python.paddle.compat as cpt
 
 __all__ = [
     "train",
@@ -47,7 +47,7 @@ __all__ = [
     "get_dict",
 ]
 
-DATA_URL = ("http://paddlemodels.bj.bcebos.com/wmt/wmt16.tar.gz")
+DATA_URL = ("http://Paddle.python.paddlemodels.bj.bcebos.com/wmt/wmt16.tar.gz")
 DATA_MD5 = "0c38be43600334966403524a40dcd81e"
 
 TOTAL_EN_WORDS = 11250
@@ -82,7 +82,7 @@ def __build_dict(tar_file, dict_size, save_path, lang):
 
 
 def __load_dict(tar_file, dict_size, lang, reverse=False):
-    dict_path = os.path.join(paddle.dataset.common.DATA_HOME,
+    dict_path = os.path.join(Paddle.python.paddle.dataset.common.DATA_HOME,
                              "wmt16/%s_%d.dict" % (lang, dict_size))
     if not os.path.exists(dict_path) or (
             len(open(dict_path, "rb").readlines()) != dict_size):
@@ -157,7 +157,7 @@ def train(src_dict_size, trg_dict_size, src_lang="en"):
     The original like for training data is:
     http://www.quest.dcs.shef.ac.uk/wmt16_files_mmt/training.tar.gz
 
-    paddle.dataset.wmt16 provides a tokenized version of the original dataset by
+    Paddle.python.paddle.dataset.wmt16 provides a tokenized version of the original dataset by
     using moses's tokenization script:
     https://github.com/moses-smt/mosesdecoder/blob/master/scripts/tokenizer/tokenizer.perl
 
@@ -185,7 +185,7 @@ def train(src_dict_size, trg_dict_size, src_lang="en"):
                                                    src_lang)
 
     return reader_creator(
-        tar_file=paddle.dataset.common.download(DATA_URL, "wmt16", DATA_MD5,
+        tar_file=Paddle.python.paddle.dataset.common.download(DATA_URL, "wmt16", DATA_MD5,
                                                 "wmt16.tar.gz"),
         file_name="wmt16/train",
         src_dict_size=src_dict_size,
@@ -205,7 +205,7 @@ def test(src_dict_size, trg_dict_size, src_lang="en"):
     The original like for test data is:
     http://www.quest.dcs.shef.ac.uk/wmt16_files_mmt/mmt16_task1_test.tar.gz
 
-    paddle.dataset.wmt16 provides a tokenized version of the original dataset by
+    Paddle.python.paddle.dataset.wmt16 provides a tokenized version of the original dataset by
     using moses's tokenization script:
     https://github.com/moses-smt/mosesdecoder/blob/master/scripts/tokenizer/tokenizer.perl
 
@@ -234,7 +234,7 @@ def test(src_dict_size, trg_dict_size, src_lang="en"):
                                                    src_lang)
 
     return reader_creator(
-        tar_file=paddle.dataset.common.download(DATA_URL, "wmt16", DATA_MD5,
+        tar_file=Paddle.python.paddle.dataset.common.download(DATA_URL, "wmt16", DATA_MD5,
                                                 "wmt16.tar.gz"),
         file_name="wmt16/test",
         src_dict_size=src_dict_size,
@@ -254,7 +254,7 @@ def validation(src_dict_size, trg_dict_size, src_lang="en"):
     The original like for validation data is:
     http://www.quest.dcs.shef.ac.uk/wmt16_files_mmt/validation.tar.gz
 
-    paddle.dataset.wmt16 provides a tokenized version of the original dataset by
+    Paddle.python.paddle.dataset.wmt16 provides a tokenized version of the original dataset by
     using moses's tokenization script:
     https://github.com/moses-smt/mosesdecoder/blob/master/scripts/tokenizer/tokenizer.perl
 
@@ -281,7 +281,7 @@ def validation(src_dict_size, trg_dict_size, src_lang="en"):
                                                    src_lang)
 
     return reader_creator(
-        tar_file=paddle.dataset.common.download(DATA_URL, "wmt16", DATA_MD5,
+        tar_file=Paddle.python.paddle.dataset.common.download(DATA_URL, "wmt16", DATA_MD5,
                                                 "wmt16.tar.gz"),
         file_name="wmt16/val",
         src_dict_size=src_dict_size,
@@ -310,17 +310,17 @@ def get_dict(lang, dict_size, reverse=False):
     if lang == "en": dict_size = min(dict_size, TOTAL_EN_WORDS)
     else: dict_size = min(dict_size, TOTAL_DE_WORDS)
 
-    dict_path = os.path.join(paddle.dataset.common.DATA_HOME,
+    dict_path = os.path.join(Paddle.python.paddle.dataset.common.DATA_HOME,
                              "wmt16/%s_%d.dict" % (lang, dict_size))
     assert os.path.exists(dict_path), "Word dictionary does not exist. "
-    "Please invoke paddle.dataset.wmt16.train/test/validation first "
+    "Please invoke Paddle.python.paddle.dataset.wmt16.train/test/validation first "
     "to build the dictionary."
-    tar_file = os.path.join(paddle.dataset.common.DATA_HOME, "wmt16.tar.gz")
+    tar_file = os.path.join(Paddle.python.paddle.dataset.common.DATA_HOME, "wmt16.tar.gz")
     return __load_dict(tar_file, dict_size, lang, reverse)
 
 
 def fetch():
     """download the entire dataset.
     """
-    paddle.v4.dataset.common.download(DATA_URL, "wmt16", DATA_MD5,
+    Paddle.python.paddle.v4.dataset.common.download(DATA_URL, "wmt16", DATA_MD5,
                                       "wmt16.tar.gz")

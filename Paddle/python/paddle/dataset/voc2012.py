@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,8 +24,8 @@ from __future__ import print_function
 import tarfile
 import io
 import numpy as np
-from paddle.dataset.common import download
-from paddle.dataset.image import *
+from Paddle.python.paddle.dataset.common import download
+from Paddle.python.paddle.dataset.image import *
 from PIL import Image
 
 __all__ = ['train', 'test', 'val']

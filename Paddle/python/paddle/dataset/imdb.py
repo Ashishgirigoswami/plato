@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ Besides, this module also provides API for building dictionary.
 
 from __future__ import print_function
 
-import paddle.dataset.common
+import Paddle.python.paddle.dataset.common
 import collections
 import tarfile
 import re
@@ -41,7 +41,7 @@ def tokenize(pattern):
     Read files that match the given pattern.  Tokenize and yield each file.
     """
 
-    with tarfile.open(paddle.dataset.common.download(URL, 'imdb', MD5)) as tarf:
+    with tarfile.open(Paddle.python.paddle.dataset.common.download(URL, 'imdb', MD5)) as tarf:
         # Note that we should use tarfile.next(), which does
         # sequential access of member files, other than
         # tarfile.extractfile, which does random access and might
@@ -140,4 +140,4 @@ def word_dict():
 
 
 def fetch():
-    paddle.dataset.common.download(URL, 'imdb', MD5)
+    Paddle.python.paddle.dataset.common.download(URL, 'imdb', MD5)

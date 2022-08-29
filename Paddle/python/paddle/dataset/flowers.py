@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 """
 This module will download dataset from
 http://www.robots.ox.ac.uk/~vgg/data/flowers/102/index.html
-and parse train/test set intopaddle reader creators.
+and parse train/test set intoPaddle.python.paddle reader creators.
 
 This set contains images of flowers belonging to 102 different categories.
 The images were acquired by searching the web and taking pictures. There are a
@@ -36,9 +36,9 @@ import functools
 from .common import download
 import tarfile
 import scipy.io as scio
-from paddle.dataset.image import *
-from paddle.reader import *
-from paddle import compat as cpt
+from Paddle.python.paddle.dataset.image import *
+from Paddle.python.paddle.reader import *
+from Paddle.python.paddle import compat as cpt
 import os
 import numpy as np
 from multiprocessing import cpu_count
@@ -46,9 +46,9 @@ import six
 from six.moves import cPickle as pickle
 __all__ = ['train', 'test', 'valid']
 
-DATA_URL = 'http://paddlemodels.bj.bcebos.com/flowers/102flowers.tgz'
-LABEL_URL = 'http://paddlemodels.bj.bcebos.com/flowers/imagelabels.mat'
-SETID_URL = 'http://paddlemodels.bj.bcebos.com/flowers/setid.mat'
+DATA_URL = 'http://Paddle.python.paddlemodels.bj.bcebos.com/flowers/102flowers.tgz'
+LABEL_URL = 'http://Paddle.python.paddlemodels.bj.bcebos.com/flowers/imagelabels.mat'
+SETID_URL = 'http://Paddle.python.paddlemodels.bj.bcebos.com/flowers/setid.mat'
 DATA_MD5 = '52808999861908f626f3c1f4e79d11fa'
 LABEL_MD5 = 'e0620be6f572b9609742df49c70aed4d'
 SETID_MD5 = 'a5357ecc9cb78c4bef273ce3793fc85c'

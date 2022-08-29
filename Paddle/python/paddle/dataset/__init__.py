@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,20 +15,20 @@
 Dataset package.
 """
 
-import paddle.dataset.mnist
-import paddle.dataset.imikolov
-import paddle.dataset.imdb
-import paddle.dataset.cifar
-import paddle.dataset.movielens
-import paddle.dataset.conll05
-import paddle.dataset.uci_housing
-import paddle.dataset.sentiment
-import paddle.dataset.wmt14
-import paddle.dataset.wmt16
-import paddle.dataset.mq2007
-import paddle.dataset.flowers
-import paddle.dataset.voc2012
-import paddle.dataset.image
+import Paddle.python.paddle.dataset.mnist
+import Paddle.python.paddle.dataset.imikolov
+import Paddle.python.paddle.dataset.imdb
+import Paddle.python.paddle.dataset.cifar
+import Paddle.python.paddle.dataset.movielens
+import Paddle.python.paddle.dataset.conll05
+import Paddle.python.paddle.dataset.uci_housing
+import Paddle.python.paddle.dataset.sentiment
+import Paddle.python.paddle.dataset.wmt14
+import Paddle.python.paddle.dataset.wmt16
+import Paddle.python.paddle.dataset.mq2007
+import Paddle.python.paddle.dataset.flowers
+import Paddle.python.paddle.dataset.voc2012
+import Paddle.python.paddle.dataset.image
 
 __all__ = [
     'mnist',

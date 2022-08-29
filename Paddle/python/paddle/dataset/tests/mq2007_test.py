@@ -1,4 +1,4 @@
-# Copyright (c) 2016 PaddlePaddle Authors. All Rights Reserved
+# Copyright (c) 2016 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,19 +14,19 @@
 
 from __future__ import print_function
 
-import paddle.dataset.mq2007
+import Paddle.python.paddle.dataset.mq2007
 import unittest
 
 
 class TestMQ2007(unittest.TestCase):
     def test_pairwise(self):
-        for label, query_left, query_right in paddle.dataset.mq2007.test(
+        for label, query_left, query_right in Paddle.python.paddle.dataset.mq2007.test(
                 format="pairwise"):
             self.assertEqual(query_left.shape(), (46, ))
             self.assertEqual(query_right.shape(), (46, ))
 
     def test_listwise(self):
-        for label_array, query_array in paddle.dataset.mq2007.test(
+        for label_array, query_array in Paddle.python.paddle.dataset.mq2007.test(
                 format="listwise"):
             self.assertEqual(len(label_array), len(query_array))
 

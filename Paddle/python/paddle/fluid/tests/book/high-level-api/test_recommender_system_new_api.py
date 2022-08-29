@@ -1,4 +1,4 @@
-#   Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,20 +17,20 @@ from __future__ import print_function
 import math
 import sys
 import numpy as np
-import paddle
-import paddle.fluid as fluid
+import Paddle.python.paddle
+import Paddle.python.paddle.fluid as fluid
 import sys
 try:
-    from paddle.fluid.contrib.trainer import *
-    from paddle.fluid.contrib.inferencer import *
+    from Paddle.python.paddle.fluid.contrib.trainer import *
+    from Paddle.python.paddle.fluid.contrib.inferencer import *
 except ImportError:
     print(
-        "In the fluid 1.0, the trainer and inferencer are moving to paddle.fluid.contrib",
+        "In the fluid 1.0, the trainer and inferencer are moving to Paddle.python.paddle.fluid.contrib",
         file=sys.stderr)
-    from paddle.fluid.trainer import *
-    from paddle.fluid.inferencer import *
-import paddle.fluid.layers as layers
-import paddle.fluid.nets as nets
+    from Paddle.python.paddle.fluid.trainer import *
+    from Paddle.python.paddle.fluid.inferencer import *
+import Paddle.python.paddle.fluid.layers as layers
+import Paddle.python.paddle.fluid.nets as nets
 
 IS_SPARSE = True
 USE_GPU = False
@@ -41,7 +41,7 @@ def get_usr_combined_features():
     # FIXME(dzh) : old API integer_value(10) may have range check.
     # currently we don't have user configurated check.
 
-    USR_DICT_SIZE = paddle.dataset.movielens.max_user_id() + 1
+    USR_DICT_SIZE = Paddle.python.paddle.dataset.movielens.max_user_id() + 1
 
     uid = layers.data(name='user_id', shape=[1], dtype='int64')
 
@@ -66,7 +66,7 @@ def get_usr_combined_features():
 
     usr_gender_fc = layers.fc(input=usr_gender_emb, size=16)
 
-    USR_AGE_DICT_SIZE = len(paddle.dataset.movielens.age_table)
+    USR_AGE_DICT_SIZE = len(Paddle.python.paddle.dataset.movielens.age_table)
     usr_age_id = layers.data(name='age_id', shape=[1], dtype="int64")
 
     usr_age_emb = layers.embedding(
@@ -77,7 +77,7 @@ def get_usr_combined_features():
 
     usr_age_fc = layers.fc(input=usr_age_emb, size=16)
 
-    USR_JOB_DICT_SIZE = paddle.dataset.movielens.max_job_id() + 1
+    USR_JOB_DICT_SIZE = Paddle.python.paddle.dataset.movielens.max_job_id() + 1
     usr_job_id = layers.data(name='job_id', shape=[1], dtype="int64")
 
     usr_job_emb = layers.embedding(
@@ -98,7 +98,7 @@ def get_usr_combined_features():
 
 def get_mov_combined_features():
 
-    MOV_DICT_SIZE = paddle.dataset.movielens.max_movie_id() + 1
+    MOV_DICT_SIZE = Paddle.python.paddle.dataset.movielens.max_movie_id() + 1
 
     mov_id = layers.data(name='movie_id', shape=[1], dtype='int64')
 
@@ -111,7 +111,7 @@ def get_mov_combined_features():
 
     mov_fc = layers.fc(input=mov_emb, size=32)
 
-    CATEGORY_DICT_SIZE = len(paddle.dataset.movielens.movie_categories())
+    CATEGORY_DICT_SIZE = len(Paddle.python.paddle.dataset.movielens.movie_categories())
 
     category_id = layers.data(
         name='category_id', shape=[1], dtype='int64', lod_level=1)
@@ -122,7 +122,7 @@ def get_mov_combined_features():
     mov_categories_hidden = layers.sequence_pool(
         input=mov_categories_emb, pool_type="sum")
 
-    MOV_TITLE_DICT_SIZE = len(paddle.dataset.movielens.get_movie_title_dict())
+    MOV_TITLE_DICT_SIZE = len(Paddle.python.paddle.dataset.movielens.get_movie_title_dict())
 
     mov_title_id = layers.data(
         name='movie_title', shape=[1], dtype='int64', lod_level=1)
@@ -184,8 +184,8 @@ def train(use_cuda, train_program, params_dirname):
 
     def event_handler(event):
         if isinstance(event, EndStepEvent):
-            test_reader = paddle.batch(
-                paddle.dataset.movielens.test(), batch_size=BATCH_SIZE)
+            test_reader = Paddle.python.paddle.batch(
+                Paddle.python.paddle.dataset.movielens.test(), batch_size=BATCH_SIZE)
             avg_cost_set = trainer.test(
                 reader=test_reader, feed_order=feed_order)
 
@@ -204,9 +204,9 @@ def train(use_cuda, train_program, params_dirname):
                 if math.isnan(float(avg_cost)):
                     sys.exit("got NaN loss, training failed.")
 
-    train_reader = paddle.batch(
-        paddle.reader.shuffle(
-            paddle.dataset.movielens.train(), buf_size=8192),
+    train_reader = Paddle.python.paddle.batch(
+        Paddle.python.paddle.reader.shuffle(
+            Paddle.python.paddle.dataset.movielens.train(), buf_size=8192),
         batch_size=BATCH_SIZE)
 
     trainer.train(
@@ -221,7 +221,7 @@ def infer(use_cuda, inference_program, params_dirname):
     inferencer = Inferencer(
         inference_program, param_path=params_dirname, place=place)
 
-    # Use the first data from paddle.dataset.movielens.test() as input.
+    # Use the first data from Paddle.python.paddle.dataset.movielens.test() as input.
     # Use create_lod_tensor(data, recursive_sequence_lengths, place) API 
     # to generate LoD Tensor where `data` is a list of sequences of index 
     # numbers, `recursive_sequence_lengths` is the length-based level of detail 

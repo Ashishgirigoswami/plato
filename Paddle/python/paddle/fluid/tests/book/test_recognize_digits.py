@@ -1,4 +1,4 @@
-#   Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 from __future__ import print_function
 
-import paddle.fluid.core as core
+import Paddle.python.paddle.fluid.core as core
 import math
 import os
 import sys
@@ -22,9 +22,9 @@ import unittest
 
 import numpy
 
-import paddle
-import paddle.fluid as fluid
-from paddle.fluid.layers.device import get_places
+import Paddle.python.paddle
+import Paddle.python.paddle.fluid as fluid
+from Paddle.python.paddle.fluid.layers.device import get_places
 
 BATCH_SIZE = 64
 
@@ -94,12 +94,12 @@ def train(nn_type,
 
     exe = fluid.Executor(place)
 
-    train_reader = paddle.batch(
-        paddle.reader.shuffle(
-            paddle.dataset.mnist.train(), buf_size=500),
+    train_reader = Paddle.python.paddle.batch(
+        Paddle.python.paddle.reader.shuffle(
+            Paddle.python.paddle.dataset.mnist.train(), buf_size=500),
         batch_size=BATCH_SIZE)
-    test_reader = paddle.batch(
-        paddle.dataset.mnist.test(), batch_size=BATCH_SIZE)
+    test_reader = Paddle.python.paddle.batch(
+        Paddle.python.paddle.dataset.mnist.test(), batch_size=BATCH_SIZE)
     feeder = fluid.DataFeeder(feed_list=[img, label], place=place)
 
     def train_loop(main_program):
@@ -151,16 +151,16 @@ def train(nn_type,
     if is_local:
         train_loop(fluid.default_main_program())
     else:
-        port = os.getenv("PADDLE_PSERVER_PORT", "6174")
-        pserver_ips = os.getenv("PADDLE_PSERVER_IPS")  # ip,ip...
+        port = os.getenv("Paddle.python.paddle_PSERVER_PORT", "6174")
+        pserver_ips = os.getenv("Paddle.python.paddle_PSERVER_IPS")  # ip,ip...
         eplist = []
         for ip in pserver_ips.split(","):
             eplist.append(':'.join([ip, port]))
         pserver_endpoints = ",".join(eplist)  # ip:port,ip:port...
-        trainers = int(os.getenv("PADDLE_TRAINERS"))
+        trainers = int(os.getenv("Paddle.python.paddle_TRAINERS"))
         current_endpoint = os.getenv("POD_IP") + ":" + port
-        trainer_id = int(os.getenv("PADDLE_TRAINER_ID"))
-        training_role = os.getenv("PADDLE_TRAINING_ROLE", "TRAINER")
+        trainer_id = int(os.getenv("Paddle.python.paddle_TRAINER_ID"))
+        training_role = os.getenv("Paddle.python.paddle_TRAINING_ROLE", "TRAINER")
         t = fluid.DistributeTranspiler()
         t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers)
         if training_role == "PSERVER":

@@ -1,4 +1,4 @@
-#   Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
+#   Copyright (c) 2018 Paddle.python.paddlePaddle.python.paddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,21 +18,21 @@ import contextlib
 import sys
 
 import numpy as np
-import paddle
-import paddle.fluid as fluid
+import Paddle.python.paddle
+import Paddle.python.paddle.fluid as fluid
 
 try:
-    from paddle.fluid.contrib.trainer import *
-    from paddle.fluid.contrib.inferencer import *
+    from Paddle.python.paddle.fluid.contrib.trainer import *
+    from Paddle.python.paddle.fluid.contrib.inferencer import *
 except ImportError:
     print(
-        "In the fluid 1.0, the trainer and inferencer are moving to paddle.fluid.contrib",
+        "In the fluid 1.0, the trainer and inferencer are moving to Paddle.python.paddle.fluid.contrib",
         file=sys.stderr)
-    from paddle.fluid.trainer import *
-    from paddle.fluid.inferencer import *
-import paddle.fluid.framework as framework
-import paddle.fluid.layers as pd
-from paddle.fluid.executor import Executor
+    from Paddle.python.paddle.fluid.trainer import *
+    from Paddle.python.paddle.fluid.inferencer import *
+import Paddle.python.paddle.fluid.framework as framework
+import Paddle.python.paddle.fluid.layers as pd
+from Paddle.python.paddle.fluid.executor import Executor
 from functools import partial
 import unittest
 
@@ -199,9 +199,9 @@ def train(use_cuda, is_sparse, is_local=True):
         return
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
 
-    train_reader = paddle.batch(
-        paddle.reader.shuffle(
-            paddle.dataset.wmt14.train(dict_size), buf_size=1000),
+    train_reader = Paddle.python.paddle.batch(
+        Paddle.python.paddle.reader.shuffle(
+            Paddle.python.paddle.dataset.wmt14.train(dict_size), buf_size=1000),
         batch_size=batch_size)
 
     feed_order = [
@@ -250,9 +250,9 @@ def decode_main(use_cuda, is_sparse):
     init_scores = fluid.create_lod_tensor(init_scores_data,
                                           init_recursive_seq_lens, place)
 
-    train_data = paddle.batch(
-        paddle.reader.shuffle(
-            paddle.dataset.wmt14.train(dict_size), buf_size=1000),
+    train_data = Paddle.python.paddle.batch(
+        Paddle.python.paddle.reader.shuffle(
+            Paddle.python.paddle.dataset.wmt14.train(dict_size), buf_size=1000),
         batch_size=batch_size)
 
     feed_order = ['src_word_id']
